@@ -1,26 +1,15 @@
-<%@ page import="com.book.domain.Book" %><%--
-  Created by IntelliJ IDEA.
-  User: 君行天下
-  Date: 2017/7/24
-  Time: 19:25
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.book.domain.Book" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>我的借还</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery-3.2.1.js"></script>
-    <script src="js/bootstrap.min.js" ></script>
-    <style>
-        body{
-            background-color: rgb(240,242,245);
-        }
-    </style>
+    <script src="js/bootstrap.min.js"></script>
 </head>
 <body>
-
 <nav class="navbar navbar-default" role="navigation" style="background-color:#fff">
     <div class="container-fluid">
         <div class="navbar-header" style="margin-left: 8%;margin-right: 1%">
@@ -28,23 +17,23 @@
         </div>
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
             <ul class="nav navbar-nav navbar-left">
-                <li >
-                    <a href="reader_querybook.html" >
+                <li>
+                    <a href="reader_querybook.html">
                         图书查询
                     </a>
                 </li>
                 <li>
-                    <a href="reader_info.html" >
+                    <a href="reader_info.html">
                         个人信息
                     </a>
                 </li>
                 <li class="active">
-                    <a href="mylend.html" >
+                    <a href="mylend.html">
                         我的借还
                     </a>
                 </li>
-                <li >
-                    <a href="reader_repasswd.html" >
+                <li>
+                    <a href="reader_repasswd.html">
                         密码修改
                     </a>
                 </li>
@@ -56,8 +45,6 @@
         </div>
     </div>
 </nav>
-
-
 
 <div style="position: relative;top: 10%">
     <c:if test="${!empty succ}">
@@ -99,9 +86,9 @@
             <tbody>
             <c:forEach items="${list}" var="alog">
                 <tr>
-                    <td><c:out value="${alog.bookId}"></c:out></td>
-                    <td><c:out value="${alog.lendDate}"></c:out></td>
-                    <td><c:out value="${alog.backDate}"></c:out></td>
+                    <td><c:out value="${alog.bookId}"/></td>
+                    <td><c:out value="${alog.lendDate}"/></td>
+                    <td><c:out value="${alog.backDate}"/></td>
                     <c:if test="${empty alog.backDate}">
                         <td>未还</td>
                     </c:if>

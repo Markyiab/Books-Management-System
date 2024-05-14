@@ -3,8 +3,8 @@ package com.book.domain;
 public class Admin {
 
     private int adminId;
-    private String password;
 
+    private String password;
 
     public void setPassword(String password) {
         this.password = password;

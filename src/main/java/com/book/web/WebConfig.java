@@ -10,12 +10,10 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.book.web")
 public class WebConfig extends WebMvcConfigurerAdapter {
-
 
     @Bean
     public ViewResolver viewResolver() {
@@ -34,8 +32,12 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/img/**")
                 .addResourceLocations("/static/images/");
-        registry.addResourceHandler("/js/**").addResourceLocations("/static/js/");
-        registry.addResourceHandler("/css/**").addResourceLocations("/static/css/");
-        registry.addResourceHandler("/html/**").addResourceLocations("/static/html/");
+        registry.addResourceHandler("/js/**")
+                .addResourceLocations("/static/js/");
+        registry.addResourceHandler("/css/**")
+                .addResourceLocations("/static/css/");
+        registry.addResourceHandler("/html/**")
+                .addResourceLocations("/static/html/");
     }
+
 }

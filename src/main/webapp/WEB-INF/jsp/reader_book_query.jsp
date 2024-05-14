@@ -1,26 +1,16 @@
-<%@ page import="com.book.domain.Book" %><%--
-  Created by IntelliJ IDEA.
-  User: 君行天下
-  Date: 2017/7/24
-  Time: 19:25
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.book.domain.Book" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>全部图书信息</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery-3.2.1.js"></script>
-    <script src="js/bootstrap.min.js" ></script>
-    <style>
-        body{
-            background-color: rgb(240,242,245);
-        }
-    </style>
+    <script src="js/bootstrap.min.js"></script>
+
 </head>
 <body>
-
 <nav class="navbar navbar-default" role="navigation" style="background-color:#fff">
     <div class="container-fluid">
         <div class="navbar-header" style="margin-left: 8%;margin-right: 1%">
@@ -29,22 +19,22 @@
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
             <ul class="nav navbar-nav navbar-left">
                 <li class="active">
-                    <a href="reader_querybook.html" >
+                    <a href="reader_querybook.html">
                         图书查询
                     </a>
                 </li>
                 <li>
-                    <a href="reader_info.html" >
+                    <a href="reader_info.html">
                         个人信息
                     </a>
                 </li>
-                <li >
-                    <a href="mylend.html" >
+                <li>
+                    <a href="mylend.html">
                         我的借还
                     </a>
                 </li>
-                <li >
-                    <a href="reader_repasswd.html" >
+                <li>
+                    <a href="reader_repasswd.html">
                         密码修改
                     </a>
                 </li>
@@ -59,21 +49,22 @@
 
 
 <div style="padding: 30px 550px 10px">
-    <form   method="post" action="reader_querybook_do.html" class="form-inline"  id="searchform">
+    <form method="post" action="reader_querybook_do.html" class="form-inline" id="searchform">
         <div class="input-group">
             <input type="text" placeholder="输入图书号或图书名" class="form-control" id="search" name="searchWord" class="form-control">
             <span class="input-group-btn">
-                            <input type="submit" value="搜索" class="btn btn-default">
+                <input type="submit" value="搜索" class="btn btn-default">
             </span>
         </div>
     </form>
     <script>
-        function mySubmit(flag){
+        function mySubmit(flag) {
             return flag;
         }
+
         $("#searchform").submit(function () {
-            var val=$("#search").val();
-            if(val==''){
+            var val = $("#search").val();
+            if (val == '') {
                 alert("请输入关键字");
                 return mySubmit(false);
             }
@@ -123,18 +114,22 @@
                 <tbody>
                 <c:forEach items="${books}" var="book">
                     <tr>
-                        <td><c:out value="${book.name}"></c:out></td>
-                        <td><c:out value="${book.author}"></c:out></td>
-                        <td><c:out value="${book.publish}"></c:out></td>
-                        <td><c:out value="${book.isbn}"></c:out></td>
-                        <td><c:out value="${book.price}"></c:out></td>
-                        <c:if test="${book.state==1}">
+                        <td><c:out value="${book.name}"/></td>
+                        <td><c:out value="${book.author}"/></td>
+                        <td><c:out value="${book.publish}"/></td>
+                        <td><c:out value="${book.isbn}"/></td>
+                        <td><c:out value="${book.price}"/></td>
+                        <c:if test="${book.state eq 1}">
                             <td>在馆</td>
                         </c:if>
-                        <c:if test="${book.state==0}">
+                        <c:if test="${book.state eq 0}">
                             <td>借出</td>
                         </c:if>
-                        <td><a href="readerbookdetail.html?bookId=<c:out value="${book.bookId}"></c:out>"><button type="button" class="btn btn-success btn-xs">详情</button></a></td>
+                        <td>
+                            <a href="readerbookdetail.html?bookId=<c:out value="${book.bookId}"/>">
+                                <button type="button" class="btn btn-success btn-xs">详情</button>
+                            </a>
+                        </td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -142,7 +137,6 @@
         </div>
     </div>
 </c:if>
-
 
 </body>
 </html>

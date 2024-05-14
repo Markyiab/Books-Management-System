@@ -16,71 +16,63 @@ import javax.servlet.http.HttpServletRequest;
 public class LendController {
 
     private LendService lendService;
+
     @Autowired
     public void setLendService(LendService lendService) {
         this.lendService = lendService;
     }
+
     private BookService bookService;
+
     @Autowired
     public void setBookService(BookService bookService) {
         this.bookService = bookService;
     }
 
     @RequestMapping("/lendbook.html")
-    public ModelAndView bookLend(HttpServletRequest request){
-        long bookId=Integer.parseInt(request.getParameter("bookId"));
-        Book book=bookService.getBook(bookId);
-       ModelAndView modelAndView=new ModelAndView("admin_book_lend");
-       modelAndView.addObject("book",book);
-       return modelAndView;
+    public ModelAndView bookLend(HttpServletRequest request) {
+        long bookId = Integer.parseInt(request.getParameter("bookId"));
+        Book book = bookService.getBook(bookId);
+        ModelAndView modelAndView = new ModelAndView("admin_book_lend");
+        modelAndView.addObject("book", book);
+        return modelAndView;
     }
 
     @RequestMapping("/lendbookdo.html")
-    public String bookLendDo(HttpServletRequest request,RedirectAttributes redirectAttributes,int readerId){
-        long bookId=Integer.parseInt(request.getParameter("id"));
-        boolean lendsucc=lendService.bookLend(bookId,readerId);
-        if (lendsucc){
+    public String bookLendDo(HttpServletRequest request, RedirectAttributes redirectAttributes, int readerId) {
+        long bookId = Integer.parseInt(request.getParameter("id"));
+        if (lendService.bookLend(bookId, readerId)) {
             redirectAttributes.addFlashAttribute("succ", "图书借阅成功！");
-            return "redirect:/allbooks.html";
-        }else {
-            redirectAttributes.addFlashAttribute("succ", "图书借阅成功！");
-            return "redirect:/allbooks.html";
+        } else {
+            redirectAttributes.addFlashAttribute("succ", "图书借阅失败！");
         }
-
-
+        return "redirect:/allbooks.html";
     }
 
     @RequestMapping("/returnbook.html")
-    public String bookReturn(HttpServletRequest request,RedirectAttributes redirectAttributes){
-        long bookId=Integer.parseInt(request.getParameter("bookId"));
-        boolean retSucc=lendService.bookReturn(bookId);
-        if (retSucc){
+    public String bookReturn(HttpServletRequest request, RedirectAttributes redirectAttributes) {
+        long bookId = Integer.parseInt(request.getParameter("bookId"));
+        if (lendService.bookReturn(bookId)) {
             redirectAttributes.addFlashAttribute("succ", "图书归还成功！");
-            return "redirect:/allbooks.html";
-        }
-        else {
+        } else {
             redirectAttributes.addFlashAttribute("error", "图书归还失败！");
-            return "redirect:/allbooks.html";
         }
+        return "redirect:/allbooks.html";
     }
-
 
     @RequestMapping("/lendlist.html")
-    public ModelAndView lendList(){
-
-        ModelAndView modelAndView=new ModelAndView("admin_lend_list");
-        modelAndView.addObject("list",lendService.lendList());
+    public ModelAndView lendList() {
+        ModelAndView modelAndView = new ModelAndView("admin_lend_list");
+        modelAndView.addObject("list", lendService.lendList());
         return modelAndView;
     }
+
     @RequestMapping("/mylend.html")
-    public ModelAndView myLend(HttpServletRequest request){
-        ReaderCard readerCard=(ReaderCard) request.getSession().getAttribute("readercard");
-        ModelAndView modelAndView=new ModelAndView("reader_lend_list");
-        modelAndView.addObject("list",lendService.myLendList(readerCard.getReaderId()));
+    public ModelAndView myLend(HttpServletRequest request) {
+        ReaderCard readerCard = (ReaderCard) request.getSession().getAttribute("readercard");
+        ModelAndView modelAndView = new ModelAndView("reader_lend_list");
+        modelAndView.addObject("list", lendService.myLendList(readerCard.getReaderId()));
         return modelAndView;
     }
-
-
-
 
 }

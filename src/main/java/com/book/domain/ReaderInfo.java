@@ -6,10 +6,15 @@ import java.util.Date;
 public class ReaderInfo implements Serializable{
 
     private int readerId;
+
     private String name;
+
     private String sex;
+
     private Date birth;
+
     private String address;
+
     private String telcode;
 
     public void setName(String name) {

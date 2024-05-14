@@ -4,25 +4,22 @@
 <head>
     <title>全部读者</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery-3.2.1.js"></script>
-    <script src="js/bootstrap.min.js" ></script>
-    <style>
-        body{
-            background-color: rgb(240,242,245);
-        }
-    </style>
+    <script src="js/bootstrap.min.js"></script>
 
 </head>
 <body>
 <c:if test="${!empty info}">
-    <script>alert("${info}");window.location.href="allreaders.html"</script>
+    <script>alert("${info}");
+    window.location.href = "allreaders.html"</script>
 </c:if>
-<nav  style="position:fixed;z-index: 999;width: 100%;background-color: #fff" class="navbar navbar-default" role="navigation" >
+<nav style="position:fixed;z-index: 999;width: 100%;background-color: #fff" class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header" style="margin-left: 8%;margin-right: 1%">
             <a class="navbar-brand" href="admin_main.html">图书管理系统</a>
         </div>
-        <div class="collapse navbar-collapse" >
+        <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-left">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -55,8 +52,8 @@
                         <li><a href="lendlist.html">借还日志</a></li>
                     </ul>
                 </li>
-                <li >
-                    <a href="admin_repasswd.html" >
+                <li>
+                    <a href="admin_repasswd.html">
                         密码修改
                     </a>
                 </li>
@@ -69,24 +66,24 @@
     </div>
 </nav>
 <div style="position: relative;top: 15%">
-<c:if test="${!empty succ}">
-    <div class="alert alert-success alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert"
-                aria-hidden="true">
-            &times;
-        </button>
-            ${succ}
-    </div>
-</c:if>
-<c:if test="${!empty error}">
-    <div class="alert alert-danger alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert"
-                aria-hidden="true">
-            &times;
-        </button>
-            ${error}
-    </div>
-</c:if>
+    <c:if test="${!empty succ}">
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>
+                ${succ}
+        </div>
+    </c:if>
+    <c:if test="${!empty error}">
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>
+                ${error}
+        </div>
+    </c:if>
 </div>
 
 
@@ -97,7 +94,7 @@
         </h3>
     </div>
     <div class="panel-body">
-        <table class="table table-hover" >
+        <table class="table table-hover">
             <thead>
             <tr>
                 <th>读者号</th>
@@ -113,14 +110,22 @@
             <tbody>
             <c:forEach items="${readers}" var="reader">
                 <tr>
-                    <td><c:out value="${reader.readerId}"></c:out></td>
-                    <td><c:out value="${reader.name}"></c:out></td>
-                    <td><c:out value="${reader.sex}"></c:out></td>
-                    <td><c:out value="${reader.birth}"></c:out></td>
-                    <td><c:out value="${reader.address}"></c:out></td>
-                    <td><c:out value="${reader.telcode}"></c:out></td>
-                    <td><a href="reader_edit.html?readerId=<c:out value="${reader.readerId}"></c:out>"><button type="button" class="btn btn-info btn-xs">编辑</button></a></td>
-                    <td><a href="reader_delete.html?readerId=<c:out value="${reader.readerId}"></c:out>"><button type="button" class="btn btn-danger btn-xs">删除</button></a></td>
+                    <td><c:out value="${reader.readerId}"/></td>
+                    <td><c:out value="${reader.name}"/></td>
+                    <td><c:out value="${reader.sex}"/></td>
+                    <td><c:out value="${reader.birth}"/></td>
+                    <td><c:out value="${reader.address}"/></td>
+                    <td><c:out value="${reader.telcode}"/></td>
+                    <td>
+                        <a href="reader_edit.html?readerId=<c:out value="${reader.readerId}"/>">
+                            <button type="button" class="btn btn-info btn-xs">编辑</button>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="reader_delete.html?readerId=<c:out value="${reader.readerId}"/>">
+                            <button type="button" class="btn btn-danger btn-xs">删除</button>
+                        </a>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

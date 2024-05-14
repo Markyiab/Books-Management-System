@@ -1,33 +1,22 @@
-<%@ page import="com.book.domain.Book" %><%--
-  Created by IntelliJ IDEA.
-  User: 君行天下
-  Date: 2017/7/24
-  Time: 19:25
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="com.book.domain.Book" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>借还日志</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery-3.2.1.js"></script>
-    <script src="js/bootstrap.min.js" ></script>
-    <style>
-        body{
-            background-color: rgb(240,242,245);
-        }
-    </style>
+    <script src="js/bootstrap.min.js"></script>
 
 </head>
 <body>
-
-<nav  style="position:fixed;z-index: 999;width: 100%;background-color: #fff" class="navbar navbar-default" role="navigation" >
+<nav style="position:fixed;z-index: 999;width: 100%;background-color: #fff" class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header" style="margin-left: 8%;margin-right: 1%">
             <a class="navbar-brand" href="admin_main.html">图书管理系统</a>
         </div>
-        <div class="collapse navbar-collapse" >
+        <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-left">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -60,8 +49,8 @@
                         <li><a href="lendlist.html">借还日志</a></li>
                     </ul>
                 </li>
-                <li >
-                    <a href="admin_repasswd.html" >
+                <li>
+                    <a href="admin_repasswd.html">
                         密码修改
                     </a>
                 </li>
@@ -74,9 +63,8 @@
     </div>
 </nav>
 
-
 <div style="padding: 70px 550px 10px">
-    <form   method="post" action="querybook.html" class="form-inline"  id="searchform">
+    <form method="post" action="querybook.html" class="form-inline" id="searchform">
         <div class="input-group">
             <input type="text" placeholder="输入图书名" class="form-control" id="search" name="searchWord" class="form-control">
             <span class="input-group-btn">
@@ -85,12 +73,13 @@
         </div>
     </form>
     <script>
-        function mySubmit(flag){
+        function mySubmit(flag) {
             return flag;
         }
+
         $("#searchform").submit(function () {
-            var val=$("#search").val();
-            if(val==''){
+            var val = $("#search").val();
+            if (val == '') {
                 alert("请输入关键字");
                 return mySubmit(false);
             }
@@ -138,12 +127,16 @@
             <tbody>
             <c:forEach items="${list}" var="alog">
                 <tr>
-                    <td><c:out value="${alog.sernum}"></c:out></td>
-                    <td><c:out value="${alog.bookId}"></c:out></td>
-                    <td><c:out value="${alog.readerId}"></c:out></td>
-                    <td><c:out value="${alog.lendDate}"></c:out></td>
-                    <td><c:out value="${alog.backDate}"></c:out></td>
-                    <td><a href="deletebook.html?bookId=<c:out value="${alog.sernum}"></c:out>"><button type="button" class="btn btn-danger btn-xs">删除</button></a></td>
+                    <td><c:out value="${alog.sernum}"/></td>
+                    <td><c:out value="${alog.bookId}"/></td>
+                    <td><c:out value="${alog.readerId}"/></td>
+                    <td><c:out value="${alog.lendDate}"/></td>
+                    <td><c:out value="${alog.backDate}"/></td>
+                    <td>
+                        <a href="deletebook.html?bookId=<c:out value="${alog.sernum}"/>">
+                            <button type="button" class="btn btn-danger btn-xs">删除</button>
+                        </a>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

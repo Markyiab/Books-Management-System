@@ -4,13 +4,10 @@
 <head>
     <title>《 ${detail.name}》</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery-3.2.1.js"></script>
-    <script src="js/bootstrap.min.js" ></script>
-    <style>
-        body{
-            background-color: rgb(240,242,245);
-        }
-    </style>
+    <script src="js/bootstrap.min.js"></script>
+
 </head>
 <body>
 <nav class="navbar navbar-default" role="navigation" style="background-color:#fff">
@@ -21,22 +18,22 @@
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
             <ul class="nav navbar-nav navbar-left">
                 <li class="active">
-                    <a href="reader_querybook.html" >
+                    <a href="reader_querybook.html">
                         图书查询
                     </a>
                 </li>
                 <li>
-                    <a href="reader_info.html" >
+                    <a href="reader_info.html">
                         个人信息
                     </a>
                 </li>
-                <li >
-                    <a href="mylend.html" >
+                <li>
+                    <a href="mylend.html">
                         我的借还
                     </a>
                 </li>
-                <li >
-                    <a href="reader_repasswd.html" >
+                <li>
+                    <a href="reader_repasswd.html">
                         密码修改
                     </a>
                 </li>
@@ -98,10 +95,10 @@
                 </tr>
                 <tr>
                     <th>状态</th>
-                    <c:if test="${detail.state==1}">
+                    <c:if test="${detail.state eq 1}">
                         <td>在馆</td>
                     </c:if>
-                    <c:if test="${detail.state==0}">
+                    <c:if test="${detail.state eq 0}">
                         <td>借出</td>
                     </c:if>
 
@@ -110,7 +107,6 @@
             </table>
         </div>
     </div>
-
 </div>
 
 </body>

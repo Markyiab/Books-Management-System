@@ -4,19 +4,30 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Book implements Serializable{
+public class Book implements Serializable {
 
     private long bookId;
+
     private String name;
+
     private String author;
+
     private String publish;
+
     private String isbn;
+
     private String introduction;
+
     private String language;
+
     private BigDecimal price;
+
     private Date pubdate;
+
     private int classId;
+
     private int pressmark;
+
     private int state;
 
     public void setName(String name) {
@@ -117,6 +128,7 @@ public class Book implements Serializable{
 
     @Override
     public String toString() {
-        return "这本书的信息为"+pressmark+pubdate+bookId+name+author+publish+isbn+introduction+language+price+classId+state;
+        return "这本书的信息为" + pressmark + pubdate + bookId + name + author + publish + isbn + introduction + language + price + classId + state;
     }
+
 }

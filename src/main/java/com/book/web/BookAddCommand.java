@@ -7,7 +7,6 @@ import java.util.Date;
 
 public class BookAddCommand {
 
-
     private String name;
     private String author;
     private String publish;
@@ -40,18 +39,13 @@ public class BookAddCommand {
         this.isbn = isbn;
     }
 
-
-
     public void setPubdate(String pubdate) {
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-
-        try{
-            java.util.Date date=sdf.parse(pubdate);
-            this.pubdate=date;
-        }catch (ParseException e){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            this.pubdate = sdf.parse(pubdate);
+        } catch (ParseException e) {
             e.printStackTrace();
         }
-
     }
 
     public void setPublish(String publish) {
@@ -81,7 +75,6 @@ public class BookAddCommand {
     public BigDecimal getPrice() {
         return price;
     }
-
 
     public int getClassId() {
         return classId;
@@ -118,7 +111,5 @@ public class BookAddCommand {
     public String getPublish() {
         return publish;
     }
-
-
 
 }

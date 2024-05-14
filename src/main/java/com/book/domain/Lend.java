@@ -6,9 +6,13 @@ import java.util.Date;
 public class Lend implements Serializable {
 
     private long sernum;
+
     private long bookId;
+
     private int readerId;
+
     private Date lendDate;
+
     private Date backDate;
 
     public void setReaderId(int readerId) {
@@ -50,4 +54,5 @@ public class Lend implements Serializable {
     public long getSernum() {
         return sernum;
     }
+
 }

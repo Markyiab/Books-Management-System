@@ -2,11 +2,14 @@ package com.book.domain;
 
 import java.io.Serializable;
 
-public class ReaderCard implements Serializable{
+public class ReaderCard implements Serializable {
 
     private int readerId;
+
     private String name;
+
     private String passwd;
+
     private int cardState;
 
     public void setCardState(int cardState) {
@@ -40,4 +43,5 @@ public class ReaderCard implements Serializable{
     public String getPasswd() {
         return passwd;
     }
+
 }

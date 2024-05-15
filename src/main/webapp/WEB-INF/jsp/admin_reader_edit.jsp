@@ -95,9 +95,6 @@
                 </div>
                 <input type="submit" value="确定" class="btn btn-success btn-sm" class="text-left">
                 <script>
-                    function mySubmit(flag) {
-                        return flag;
-                    }
 
                     $("#readeredit").submit(function () {
                         if ($("#name").val() == '' || $("#author").val() == '' || $("#publish").val() == ''
@@ -105,7 +102,7 @@
                             || $("#price").val() == '' || $("#pubdate").val() == '' || $("#classId").val() == ''
                             || $("#pressmark").val() == '' || $("#state").val() == '') {
                             alert("请填入完整读者信息！");
-                            return mySubmit(false);
+                            return false;
                         }
                     })
                 </script>

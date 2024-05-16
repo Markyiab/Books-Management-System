@@ -33,11 +33,6 @@
                         我的借还
                     </a>
                 </li>
-                <li>
-                    <a href="reader_repasswd.html">
-                        密码修改
-                    </a>
-                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="reader_info.html"><span class="glyphicon glyphicon-user"></span>&nbsp;${readercard.name}，已登录</a></li>
@@ -48,10 +43,47 @@
 </nav>
 
 
-<div style="padding: 30px 550px 10px">
+<div class="query-table">
     <form method="post" action="reader_querybook_do.html" class="form-inline" id="searchform">
         <div class="input-group">
-            <input type="text" placeholder="输入图书号或图书名" class="form-control" id="search" name="searchWord" class="form-control">
+            <input type="text" placeholder="输入书名" class="my-input" name="name" value="${queryBook.name}">
+            <input type="text" placeholder="请输入作者" class="my-input" name="author" value="${queryBook.author}">
+            <input type="text" placeholder="请输入出版社" class="my-input" name="publish" value="${queryBook.publish}">
+            <select name="classId" class="my-select">
+                <option value="0">请选择分类</option>
+                <c:forEach items="${classInfos}" var="m">
+                    <option value="${m.key}"
+                        <c:if test="${queryBook.classId eq m.key}">
+                            selected="selected"
+                        </c:if>
+                    >${m.value}
+                    </option>
+                </c:forEach>
+            </select>
+            <select name="language" class="my-select">
+                <option value="">请选择语言</option>
+                <c:forEach items="${languages}" var="lang">
+                    <option value="${lang}"
+                        <c:if test="${queryBook.language eq lang}">
+                            selected="selected"
+                        </c:if>
+                    >${lang}
+                    </option>
+                </c:forEach>
+            </select>
+            <select name="orderBy" class="my-select">
+                <option value="">请选择排序方式</option>
+                <c:forEach items="${orderBy}" var="order">
+                    <option value="${order.key}"
+                        <c:if test="${queryBook.orderBy eq order.key}">
+                            selected="selected"
+                        </c:if>
+                    >${order.value}
+                    </option>
+                </c:forEach>
+            </select>${queryBook.order}
+            <input type="radio" name="order" value="desc" <c:if test="${queryBook.order ne 'asc'}">checked</c:if>>降序</input>
+            <input type="radio" name="order" value="asc" <c:if test="${queryBook.order eq 'asc'}">checked</c:if>>升序</input>
             <span class="input-group-btn">
                 <input type="submit" value="搜索" class="btn btn-default">
             </span>

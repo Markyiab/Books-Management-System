@@ -17,6 +17,8 @@ public class ReaderInfo implements Serializable{
 
     private String telcode;
 
+    private String nation;
+
     public void setName(String name) {
         this.name = name;
     }
@@ -64,4 +66,13 @@ public class ReaderInfo implements Serializable{
     public String getTelcode() {
         return telcode;
     }
+
+    public String getNation() {
+        return nation;
+    }
+
+    public void setNation(final String nation) {
+        this.nation = nation;
+    }
+
 }

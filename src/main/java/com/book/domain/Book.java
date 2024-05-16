@@ -30,6 +30,10 @@ public class Book implements Serializable {
 
     private int state;
 
+    private String orderBy;
+
+    private String order;
+
     public void setName(String name) {
         this.name = name;
     }
@@ -124,6 +128,22 @@ public class Book implements Serializable {
 
     public String getPublish() {
         return publish;
+    }
+
+    public String getOrderBy() {
+        return orderBy;
+    }
+
+    public void setOrderBy(final String orderBy) {
+        this.orderBy = orderBy;
+    }
+
+    public String getOrder() {
+        return order;
+    }
+
+    public void setOrder(final String order) {
+        this.order = order;
     }
 
     @Override

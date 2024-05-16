@@ -1,6 +1,7 @@
 package com.book.dao;
 
 import com.book.domain.Book;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
@@ -44,9 +45,9 @@ public class BookDao {
         return jdbcTemplate.queryForObject(MATCH_BOOK_SQL, new Object[]{swcx, swcx}, Integer.class);
     }
 
-    public ArrayList<Book> queryBook(String sw) {
+    public List<Book> queryBook(String sw) {
         String swcx = "%" + sw + "%";
-        final ArrayList<Book> books = new ArrayList<Book>();
+        final ArrayList<Book> books = new ArrayList<>();
         jdbcTemplate.query(QUERY_BOOK_SQL, new Object[]{swcx, swcx}, resultSet -> {
             resultSet.beforeFirst();
             while (resultSet.next()) {
@@ -66,6 +67,68 @@ public class BookDao {
                 books.add(book);
             }
         });
+        return books;
+    }
+
+    public List<Book> queryBook(Book queryBook) {
+        final StringBuilder sql = new StringBuilder("SELECT * FROM book_info where 1=1 ");
+
+//        书名、作者、出版社等关键字查询和分类查询
+        final List<Object> objects = new ArrayList<>();
+        final String name = queryBook.getName();
+        if(StringUtils.isNotBlank(name)){
+            sql.append(" and name like ? ");
+            objects.add("%" + name + "%");
+        }
+        final String author = queryBook.getAuthor();
+        if(StringUtils.isNotBlank(author)){
+            sql.append(" and author like ? ");
+            objects.add("%" + author + "%");
+        }
+        final String publish = queryBook.getPublish();
+        if(StringUtils.isNotBlank(publish)){
+            sql.append(" and publish like ? ");
+            objects.add("%" + publish + "%");
+        }
+        final int classId = queryBook.getClassId();
+        if (classId > 0){
+            sql.append(" and class_id = ?");
+            objects.add(classId);
+        }
+        final String orderBy = queryBook.getOrderBy();
+        if(StringUtils.isNotBlank(orderBy)){
+            sql.append(" order by ")
+               .append(orderBy)
+               .append(" ")
+               .append(StringUtils.defaultIfBlank(queryBook.getOrder(), "desc"));
+        }
+        final ArrayList<Book> books = new ArrayList<>();
+        jdbcTemplate.query(sql.toString(), objects.toArray(), resultSet -> {
+            books.addAll(createBook(resultSet));
+        });
+
+        return books;
+    }
+
+    private List<Book> createBook(ResultSet resultSet) throws SQLException{
+        resultSet.beforeFirst();
+        final ArrayList<Book> books = new ArrayList<>();
+        while (resultSet.next()) {
+            Book book = new Book();
+            book.setAuthor(resultSet.getString("author"));
+            book.setBookId(resultSet.getLong("book_id"));
+            book.setClassId(resultSet.getInt("class_id"));
+            book.setIntroduction(resultSet.getString("introduction"));
+            book.setIsbn(resultSet.getString("isbn"));
+            book.setLanguage(resultSet.getString("language"));
+            book.setName(resultSet.getString("name"));
+            book.setPressmark(resultSet.getInt("pressmark"));
+            book.setPubdate(resultSet.getDate("pubdate"));
+            book.setPrice(resultSet.getBigDecimal("price"));
+            book.setState(resultSet.getInt("state"));
+            book.setPublish(resultSet.getString("publish"));
+            books.add(book);
+        }
         return books;
     }
 

@@ -32,11 +32,6 @@
                         我的借还
                     </a>
                 </li>
-                <li>
-                    <a href="reader_repasswd.html">
-                        密码修改
-                    </a>
-                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="reader_info.html"><span class="glyphicon glyphicon-user"></span>&nbsp;${readercard.name}，已登录</a></li>
@@ -95,6 +90,10 @@
                 <tr>
                     <th>电话</th>
                     <td>${readerinfo.telcode}</td>
+                </tr>
+                <tr>
+                    <th>民族</th>
+                    <td>${readerinfo.nation}</td>
                 </tr>
                 </tbody>
             </table>

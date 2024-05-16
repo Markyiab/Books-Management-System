@@ -31,11 +31,6 @@
                         我的借还
                     </a>
                 </li>
-                <li>
-                    <a href="reader_repasswd.html">
-                        密码修改
-                    </a>
-                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="reader_info.html"><span class="glyphicon glyphicon-user"></span>&nbsp;${readercard.name}，已登录</a></li>
@@ -78,13 +73,18 @@
                     <span class="input-group-addon">电话</span>
                     <input type="text" class="form-control" name="telcode" id="telcode" value="${readerinfo.telcode}">
                 </div>
+                <div class="input-group">
+                    <span class="input-group-addon">民族</span>
+                    <input type="text" class="form-control" name="nation" id="nation" value="${readerinfo.nation}">
+                </div>
                 <br/>
                 <input type="submit" value="确定" class="btn btn-success btn-sm" class="text-left">
                 <script>
 
                     $("#edit").submit(function () {
-                        if ($("#name").val() == '' || $("#sex").val() == '' || $("#birth").val() == '' || $("#address").val() == '' || $("#telcode").val() == '') {
-                            alert("请填入完整图书信息！");
+                        if ($("#name").val() == '' || $("#sex").val() == '' || $("#birth").val() == '' || $("#address").val() == ''
+                            || $("#telcode").val() == '' || $("#nation").val() == '') {
+                            alert("请填入完整个人信息！");
                             return false;
                         }
                     })

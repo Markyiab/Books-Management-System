@@ -4,12 +4,7 @@ import com.book.domain.ReaderCard;
 import com.book.domain.ReaderInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
-
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Date;
 
 @Repository
 public class ReaderCardDao {
@@ -19,7 +14,7 @@ public class ReaderCardDao {
     private static final String MATCH_COUNT_SQL = "select count(*) from reader_card where reader_id = ? and passwd = ? ";
     private static final String FIND_READER_BY_USERID = "select reader_id, name, passwd, card_state from reader_card where reader_id = ? ";
     private static final String RE_PASSWORD_SQL = "UPDATE reader_card set passwd = ? where reader_id = ? ";
-    private static final String ADD_READERCARD_SQL = "INSERT INTO reader_card (reader_id,name) values ( ? , ?)";
+    private static final String ADD_READERCARD_SQL = "INSERT INTO reader_card (reader_id, name) values (? , ?)";
     private static final String UPDATE_READER_NAME_SQL = "UPDATE reader_card set name = ? where reader_id = ?";
 
     @Autowired

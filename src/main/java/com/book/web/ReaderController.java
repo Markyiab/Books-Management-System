@@ -6,7 +6,10 @@ import com.book.service.LoginService;
 import com.book.service.ReaderCardService;
 import com.book.service.ReaderInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -18,6 +21,11 @@ import java.util.Date;
 
 @Controller
 public class ReaderController {
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
+    }
 
     private ReaderInfoService readerInfoService;
 
@@ -203,23 +211,10 @@ public class ReaderController {
         return modelAndView;
     }
     @RequestMapping("reader_edit_do_r.html")
-    public String readerInfoEditDoReader(HttpServletRequest request, String name, String sex, String birth, String address, String telcode, RedirectAttributes redirectAttributes) {
+    public String readerInfoEditDoReader(HttpServletRequest request, ReaderInfo readerInfo, RedirectAttributes redirectAttributes) {
         ReaderCard readerCard = (ReaderCard) request.getSession().getAttribute("readercard");
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        Date nbirth = new Date();
-        try {
-            nbirth = sdf.parse(birth);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        ReaderInfo readerInfo = new ReaderInfo();
-        readerInfo.setAddress(address);
-        readerInfo.setBirth(nbirth);
-        readerInfo.setName(name);
         readerInfo.setReaderId(readerCard.getReaderId());
-        readerInfo.setTelcode(telcode);
-        readerInfo.setSex(sex);
+        final String name = readerInfo.getName();
 
         if (readerInfoService.editReaderInfo(readerInfo)
             && equalsOrUpdateName(readerCard, name)) {

@@ -14,6 +14,7 @@ public class NationInfoDao {
     private JdbcTemplate jdbcTemplate;
 
     private static final String QUERY_ALL_NATION_SQL = "SELECT nation_id,nation_name FROM nation_info ";
+    private static final String QUERY_BY_ID_SQL = "SELECT nation_name FROM nation_info where nation_id = ?";
 
     public Map<Integer, String> getAllNations() {
         final Map<Integer, String> map = new TreeMap<>();
@@ -27,6 +28,6 @@ public class NationInfoDao {
     }
 
     public String findById(int nationId) {
-        return jdbcTemplate.queryForObject("SELECT nation_name FROM nation_info where nation_id = ?", new Object[]{nationId}, String.class);
+        return jdbcTemplate.queryForObject(QUERY_BY_ID_SQL, new Object[]{nationId}, String.class);
     }
 }

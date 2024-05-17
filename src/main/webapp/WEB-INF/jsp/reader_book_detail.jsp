@@ -92,7 +92,7 @@
                 </tr>
                 <tr>
                     <th>分类号</th>
-                    <td>${detail.classId}</td>
+                    <td>${className}</td>
                 </tr>
                 <tr>
                     <th>状态</th>

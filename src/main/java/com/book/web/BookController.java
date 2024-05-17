@@ -61,7 +61,7 @@ public class BookController {
     }
 
     private void addQueryOptions(final ModelAndView modelAndView) {
-        modelAndView.addObject("classInfos", classInfoService.getAllClassInfo());
+        modelAndView.addObject("classMap", classInfoService.getAllClassInfo());
         modelAndView.addObject("languages", languages);
         modelAndView.addObject("orderBy", orderBy);
     }
@@ -86,7 +86,7 @@ public class BookController {
         final List<Book> books = bookService.queryBook(book);
         redirectAttributes.addFlashAttribute("books", books);
         redirectAttributes.addFlashAttribute("queryBook", book);
-        redirectAttributes.addFlashAttribute("classInfos", classInfoService.getAllClassInfo());
+        redirectAttributes.addFlashAttribute("classMap", classInfoService.getAllClassInfo());
         redirectAttributes.addFlashAttribute("languages", languages);
         redirectAttributes.addFlashAttribute("orderBy", orderBy);
         return "redirect:/reader_querybook.html";
@@ -114,7 +114,9 @@ public class BookController {
 
     @RequestMapping("/book_add.html")
     public ModelAndView addBook(HttpServletRequest request) {
-        return new ModelAndView("admin_book_add");
+        final ModelAndView modelAndView = new ModelAndView("admin_book_add");
+        modelAndView.addObject("classMap", classInfoService.getAllClassInfo());
+        return modelAndView;
     }
 
     @RequestMapping("/book_add_do.html")
@@ -131,6 +133,7 @@ public class BookController {
     public ModelAndView bookEdit(long bookId) {
         ModelAndView modelAndView = new ModelAndView("admin_book_edit");
         modelAndView.addObject("detail", bookService.getBook(bookId));
+        modelAndView.addObject("classMap", classInfoService.getAllClassInfo());
         return modelAndView;
     }
 
@@ -147,14 +150,18 @@ public class BookController {
     @RequestMapping("/bookdetail.html")
     public ModelAndView bookDetail(long bookId) {
         ModelAndView modelAndView = new ModelAndView("admin_book_detail");
-        modelAndView.addObject("detail", bookService.getBook(bookId));
+        final Book book = bookService.getBook(bookId);
+        modelAndView.addObject("detail", book);
+        modelAndView.addObject("className", classInfoService.getByClassId(book.getClassId()));
         return modelAndView;
     }
 
     @RequestMapping("/readerbookdetail.html")
     public ModelAndView readerBookDetail(long bookId) {
         ModelAndView modelAndView = new ModelAndView("reader_book_detail");
-        modelAndView.addObject("detail", bookService.getBook(bookId));
+        final Book book = bookService.getBook(bookId);
+        modelAndView.addObject("detail", book);
+        modelAndView.addObject("className", classInfoService.getByClassId(book.getClassId()));
         return modelAndView;
     }
 

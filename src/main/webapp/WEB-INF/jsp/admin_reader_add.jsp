@@ -4,13 +4,13 @@
 <head>
     <title>添加读者</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css?v=2">
+    <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
 </head>
 <body>
-<nav style="position:fixed;z-index: 999;width: 100%;background-color: #fff" class="navbar navbar-default" role="navigation">
+<nav style="background-color: #fff" class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header" style="margin-left: 8%;margin-right: 1%">
             <a class="navbar-brand" href="admin_main.html">图书管理系统</a>

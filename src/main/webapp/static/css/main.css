@@ -17,3 +17,7 @@ body {
 .query-table {
     padding: 10px 550px 10px
 }
+.panel-default{
+    width: 90%;
+    margin-left: 5%;
+}

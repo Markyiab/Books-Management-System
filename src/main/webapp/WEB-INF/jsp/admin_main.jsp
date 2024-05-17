@@ -17,7 +17,7 @@
 
 </head>
 <body background="img/281289-106.jpg">
-<nav style="position:fixed;z-index: 999;width: 100%;background-color: #fff" class="navbar navbar-default" role="navigation">
+<nav style="background-color: #fff" class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header" style="margin-left: 8%;margin-right: 1%">
             <a class="navbar-brand" href="admin_main.html">图书管理系统</a>
@@ -53,6 +53,17 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="lendlist.html">借还日志</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        维护管理
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="nation_list.html">民族管理</a></li>
+                        <li class="divider"></li>
+                        <li><a href="class_list.html">分类管理</a></li>
                     </ul>
                 </li>
                 <li>

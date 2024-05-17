@@ -15,4 +15,7 @@ public class ClassInfoService {
     public Map<Integer, String> getAllClassInfo(){
         return classInfoDao.getAllClasses();
     }
+    public String getByClassId(int classId){
+        return classInfoDao.findById(classId);
+    }
 }

@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<nav style="position:fixed;z-index: 999;width: 100%;background-color: #fff" class="navbar navbar-default" role="navigation">
+<nav style="background-color: #fff" class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header" style="margin-left: 8%;margin-right: 1%">
             <a class="navbar-brand" href="admin_main.html">图书管理系统</a>
@@ -114,8 +114,8 @@
                     <td>${detail.pubdate}</td>
                 </tr>
                 <tr>
-                    <th>分类号</th>
-                    <td>${detail.classId}</td>
+                    <th>分类</th>
+                    <td>${className}</td>
                 </tr>
                 <tr>
                     <th>状态</th>

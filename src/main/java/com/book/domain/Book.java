@@ -28,7 +28,7 @@ public class Book implements Serializable {
 
     private int pressmark;
 
-    private int state;
+    private int state = -1;
 
     private String orderBy;
 

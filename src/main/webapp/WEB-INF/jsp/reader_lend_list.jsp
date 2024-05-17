@@ -65,7 +65,7 @@
     </c:if>
 </div>
 
-<div class="panel panel-default" style="width: 90%;margin-left: 5%;margin-top: 5%">
+<div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
             我的借还日志

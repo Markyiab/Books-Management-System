@@ -1,8 +1,9 @@
+<%@ page import="com.book.domain.Book" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>全部读者</title>
+    <title>分类管理</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery-3.2.1.js"></script>
@@ -10,10 +11,6 @@
 
 </head>
 <body>
-<c:if test="${!empty info}">
-    <script>alert("${info}");
-    window.location.href = "allreaders.html"</script>
-</c:if>
 <nav style="background-color: #fff" class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header" style="margin-left: 8%;margin-right: 1%">
@@ -76,83 +73,32 @@
         </div>
     </div>
 </nav>
-<div style="padding: 70px 550px 10px">
-    <form method="post" action="queryreaders.html" class="form-inline" id="searchform">
-        <div class="input-group">
-            <input type="text" placeholder="输入借书证号" class="query-input" name="readerId" value="${readerId}">
-            <input type="text" placeholder="请输入读者姓名" class="query-input" name="name" value="${name}">
-            <span class="input-group-btn">
-                <input type="submit" value="搜索" class="btn btn-default">
-            </span>
-        </div>
-    </form>
-</div>
-<div style="position: relative;">
-    <c:if test="${!empty succ}">
-        <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                &times;
-            </button>
-                ${succ}
-        </div>
-    </c:if>
-    <c:if test="${!empty error}">
-        <div class="alert alert-danger alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
-                &times;
-            </button>
-                ${error}
-        </div>
-    </c:if>
-</div>
-
 
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-            全部读者
+            民族管理
         </h3>
     </div>
     <div class="panel-body">
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>读者号</th>
-                <th>姓名</th>
-                <th>性别</th>
-                <th>生日</th>
-                <th>地址</th>
-                <th>电话</th>
-                <th>民族</th>
-                <th>编辑</th>
-                <th>删除</th>
+                <th>编号</th>
+                <th>名称</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${readers}" var="reader">
+            <c:forEach items="${list}" var="nation">
                 <tr>
-                    <td><c:out value="${reader.readerId}"/></td>
-                    <td><c:out value="${reader.name}"/></td>
-                    <td><c:out value="${reader.sex}"/></td>
-                    <td><c:out value="${reader.birth}"/></td>
-                    <td><c:out value="${reader.address}"/></td>
-                    <td><c:out value="${reader.telcode}"/></td>
-                    <td><c:out value="${nationMap[reader.nation]}"/></td>
-                    <td>
-                        <a href="reader_edit.html?readerId=<c:out value="${reader.readerId}"/>">
-                            <button type="button" class="btn btn-info btn-xs">编辑</button>
-                        </a>
-                    </td>
-                    <td>
-                        <a href="reader_delete.html?readerId=<c:out value="${reader.readerId}"/>">
-                            <button type="button" class="btn btn-danger btn-xs">删除</button>
-                        </a>
-                    </td>
+                    <td>${nation.key}</td>
+                    <td>${nation.value}</td>
                 </tr>
             </c:forEach>
             </tbody>
         </table>
     </div>
 </div>
+
 </body>
 </html>

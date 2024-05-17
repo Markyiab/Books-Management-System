@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>图书信息添加</title>
@@ -9,7 +10,7 @@
 
 </head>
 <body>
-<nav style="position:fixed;z-index: 999;width: 100%;background-color: #fff" class="navbar navbar-default" role="navigation">
+<nav style="background-color: #fff" class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header" style="margin-left: 8%;margin-right: 1%">
             <a class="navbar-brand" href="admin_main.html">图书管理系统</a>
@@ -74,43 +75,47 @@
 
 <div style="position: relative;top: 10%;width: 80%;margin-left: 10%">
     <form action="book_add_do.html" method="post" id="addbook">
-        <div class="form-group">
-            <label for="name">书名</label>
-            <input type="text" class="form-control" name="name" id="name" placeholder="请输入书名">
+        <div class="input-group">
+            <span class="input-group-addon">书名</span>
+            <input type="text" class="form-control" name="name" id="name" value="${detail.name}">
         </div>
-        <div class="form-group">
-            <label for="author">作者</label>
-            <input type="text" class="form-control" name="author" id="author" placeholder="请输入作者名">
+        <div class="input-group">
+            <span class="input-group-addon">作者</span>
+            <input type="text" class="form-control" name="author" id="author" value="${detail.author}">
         </div>
-        <div class="form-group">
-            <label for="publish">出版社</label>
-            <input type="text" class="form-control" name="publish" id="publish" placeholder="请输入出版社">
+        <div class="input-group">
+            <span class="input-group-addon">出版社</span>
+            <input type="text" class="form-control" name="publish" id="publish" value="${detail.publish}">
         </div>
-        <div class="form-group">
-            <label for="isbn">ISBN</label>
-            <input type="text" class="form-control" name="isbn" id="isbn" placeholder="请输入ISBN">
+        <div class="input-group">
+            <span class="input-group-addon">ISBN</span>
+            <input type="text" class="form-control" name="isbn" id="isbn" value="${detail.isbn}">
         </div>
-        <div class="form-group">
-            <label for="introduction">简介</label>
-            <textarea class="form-control" rows="3" name="introduction" id="introduction" placeholder="请输入简介"></textarea>
+        <div class="input-group">
+            <span class="input-group-addon">简介</span>
+            <textarea rows="3" class="form-control" name="introduction" id="introduction" value="${detail.introduction}"></textarea>
         </div>
-        <div class="form-group">
-            <label for="language">语言</label>
-            <input type="text" class="form-control" name="language" id="language" placeholder="请输入语言">
+        <div class="input-group">
+            <span class="input-group-addon">语言</span>
+            <input type="text" class="form-control" name="language" id="language" value="${detail.language}">
         </div>
-        <div class="form-group">
-            <label for="price">价格</label>
-            <input type="text" class="form-control" name="price" id="price" placeholder="请输入价格">
+        <div class="input-group">
+            <span class="input-group-addon">价格</span>
+            <input type="text" class="form-control" name="price" id="price" value="${detail.price}">
         </div>
-        <div class="form-group">
-            <label for="pubdate">出版日期</label>
-            <input type="text" class="form-control" name="pubdate" id="pubdate" placeholder="请输入出版日期">
+        <div class="input-group">
+            <span class="input-group-addon">出版日期</span>
+            <input type="text" class="form-control" name="pubdate" id="pubdate" value="${detail.pubdate}">
         </div>
-        <div class="form-group">
-            <label for="classId">分类号</label>
-            <input type="text" class="form-control" name="classId" id="classId" placeholder="请输入分类号">
+        <div class="input-group">
+            <span class="input-group-addon">分类号</span>
+            <select name="classId" class="edit-select">
+                <c:forEach items="${classMap}" var="cla">
+                    <option value="${cla.key}">${cla.value}</option>
+                </c:forEach>
+            </select>
         </div>
-        <input type="hidden" class="form-control" name="state" value="1">
+        <input type="hidden" name="state" value="1">
 
         <input type="submit" value="添加" class="btn btn-success text-left">
         <script>

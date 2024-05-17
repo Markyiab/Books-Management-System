@@ -11,7 +11,7 @@
 
 </head>
 <body>
-<nav style="position:fixed;z-index: 999;width: 100%;background-color: #fff" class="navbar navbar-default" role="navigation">
+<nav style="background-color: #fff" class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header" style="margin-left: 8%;margin-right: 1%">
             <a class="navbar-brand" href="admin_main.html">图书管理系统</a>
@@ -75,7 +75,7 @@
 </nav>
 
 
-<div style="padding: 70px 550px 10px">
+<div style="padding: 0 550px 10px">
     <form method="post" action="allbooks.html" class="form-inline" id="searchform">
         <div class="input-group">
             <input type="text" placeholder="输入书名" class="query-input" name="name" value="${queryBook.name}">
@@ -83,7 +83,7 @@
             <input type="text" placeholder="请输入出版社" class="query-input" name="publish" value="${queryBook.publish}">
             <select name="classId" class="query-select">
                 <option value="0">请选择分类</option>
-                <c:forEach items="${classInfos}" var="m">
+                <c:forEach items="${classMap}" var="m">
                     <option value="${m.key}"
                         <c:if test="${queryBook.classId eq m.key}">
                             selected="selected"
@@ -102,6 +102,18 @@
                     >${lang}
                     </option>
                 </c:forEach>
+            </select>
+            <select name="state" class="query-select">
+                <option value="-1">请选择状态</option>
+                <option value="1" <c:if test="${queryBook.state eq 1}">
+                    selected="selected"
+                </c:if>>在馆</option>
+                <option value="0" <c:if test="${queryBook.state eq 0}">
+                    selected="selected"
+                </c:if>>借出</option>
+                <option value="2" <c:if test="${queryBook.state eq 2}">
+                    selected="selected"
+                </c:if>>遗失</option>
             </select>
             <select name="orderBy" class="query-select">
                 <option value="">请选择排序方式</option>
@@ -140,8 +152,8 @@
         </div>
     </c:if>
 </div>
-<div class="panel panel-default" style="width: 90%;margin-left: 5%">
-    <div class="panel-heading" style="background-color: #fff">
+<div class="panel panel-default">
+    <div class="panel-heading">
         <h3 class="panel-title">
             全部图书
         </h3>

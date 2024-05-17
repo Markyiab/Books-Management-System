@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>编辑《 ${detail.name}》</title>
@@ -9,7 +10,7 @@
 
 </head>
 <body>
-<nav style="position:fixed;z-index: 999;width: 100%;background-color: #fff" class="navbar navbar-default" role="navigation">
+<nav style="background-color: #fff" class="navbar navbar-default" role="navigation">
     <div class="container-fluid">
         <div class="navbar-header" >
             <a class="navbar-brand" href="admin_main.html">图书管理系统</a>
@@ -98,7 +99,7 @@
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon">简介</span>
-                    <input type="text" class="form-control" name="introduction" id="introduction" value="${detail.introduction}">
+                    <textarea rows="3" class="form-control" name="introduction" id="introduction">${detail.introduction}</textarea>
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon">语言</span>
@@ -114,9 +115,17 @@
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon">分类号</span>
-                    <input type="text" class="form-control" name="classId" id="classId" value="${detail.classId}">
+                    <select name="classId" class="edit-select">
+                        <c:forEach items="${classMap}" var="cla">
+                            <option value="${cla.key}"
+                                    <c:if test="${detail.classId eq cla.key}">
+                                        selected="selected"
+                                    </c:if>
+                            >${cla.value}</option>
+                        </c:forEach>
+                    </select>
                 </div>
-                <input type="hidden" name="state" value="${readerInfo.state}">
+                <input type="hidden" name="state" value="${detail.state}">
                 <input type="submit" value="确定" class="btn btn-success text-left">
                 <script>
 

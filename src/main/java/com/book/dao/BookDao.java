@@ -80,6 +80,11 @@ public class BookDao {
             sql.append(" and class_id = ?");
             objects.add(classId);
         }
+        final int state = queryBook.getState();
+        if(state > -1) {
+            sql.append(" and state = ?");
+            objects.add(state);
+        }
         final String orderBy = queryBook.getOrderBy();
         if(StringUtils.isNotBlank(orderBy)){
             sql.append(" order by ")

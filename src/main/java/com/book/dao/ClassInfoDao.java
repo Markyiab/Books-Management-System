@@ -15,6 +15,9 @@ public class ClassInfoDao {
 
     private static final String QUERY_ALL_CLASS_SQL = "SELECT class_id,class_name  FROM class_info ";
 
+    private static final String QUERY_BY_ID_SQL = "SELECT class_name FROM class_info where class_id = ?";
+
+
     public Map<Integer, String> getAllClasses() {
         final Map<Integer, String> map = new TreeMap<>();
         jdbcTemplate.query(QUERY_ALL_CLASS_SQL, resultSet -> {
@@ -25,4 +28,9 @@ public class ClassInfoDao {
         });
         return map;
     }
+
+    public String findById(int classId) {
+        return jdbcTemplate.queryForObject(QUERY_BY_ID_SQL, new Object[]{classId}, String.class);
+    }
+
 }

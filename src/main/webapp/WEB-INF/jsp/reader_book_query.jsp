@@ -56,7 +56,7 @@
             <input type="text" placeholder="请输入出版社" class="query-input" name="publish" value="${queryBook.publish}">
             <select name="classId" class="query-select">
                 <option value="0">请选择分类</option>
-                <c:forEach items="${classInfos}" var="m">
+                <c:forEach items="${classMap}" var="m">
                     <option value="${m.key}"
                         <c:if test="${queryBook.classId eq m.key}">
                             selected="selected"
@@ -75,6 +75,18 @@
                     >${lang}
                     </option>
                 </c:forEach>
+            </select>
+            <select name="state" class="query-select">
+                <option value="-1">请选择状态</option>
+                <option value="1" <c:if test="${queryBook.state eq 1}">
+                    selected="selected"
+                </c:if>>在馆</option>
+                <option value="0" <c:if test="${queryBook.state eq 0}">
+                    selected="selected"
+                </c:if>>借出</option>
+                <option value="2" <c:if test="${queryBook.state eq 2}">
+                    selected="selected"
+                </c:if>>遗失</option>
             </select>
             <select name="orderBy" class="query-select">
                 <option value="">请选择排序方式</option>

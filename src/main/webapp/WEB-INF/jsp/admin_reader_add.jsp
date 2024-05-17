@@ -69,10 +69,9 @@
         <div class="panel-body">
             <form action="reader_add_do.html" method="post" id="readeredit">
                 <div class="input-group">
-                    <span class="input-group-addon">读者证号</span>
-                    <input type="text" class="form-control" name="readerId" id="readerId" ">
+                    <span class="input-group-addon">借书证号</span>
+                    <input type="text" class="form-control" name="readerId" id="readerId">
                 </div>
-
                 <div class="input-group">
                     <span class="input-group-addon">姓名</span>
                     <input type="text" class="form-control" name="name" id="name">
@@ -93,17 +92,37 @@
                     <span class="input-group-addon">电话</span>
                     <input type="text" class="form-control" name="telcode" id="telcode">
                 </div>
-                <input type="submit" value="添加" class="btn btn-success btn-sm" class="text-left">
+                <div class="input-group">
+                    <span class="input-group-addon">民族</span>
+                    <input type="text" class="form-control" name="nation" id="notion">
+                </div>
+                <p style="text-align: right;color: red;position: absolute" id="info"></p><br/>
+                <input type="button" value="添加" id="readaddBtn" class="btn btn-success text-left">
                 <script>
 
-                    $("#readeredit").submit(function () {
-                        if ($("#name").val() == '' || $("#author").val() == '' || $("#publish").val() == ''
-                            || $("#isbn").val() == '' || $("#introduction").val() == '' || $("#language").val() == ''
-                            || $("#price").val() == '' || $("#pubdate").val() == '' || $("#classId").val() == ''
-                            || $("#pressmark").val() == '' || $("#state").val() == '') {
-                            alert("请填入完整读者信息！");
-                            return false;
+                    $("#readaddBtn").click(function () {
+                        var readerId = $("#readerId").val();
+                        if ($("#readerId").val() == '' || $("#name").val() == '' || $("#sex").val() == '' || $("#birth").val() == ''
+                            || $("#address").val() == '' || $("#telcode").val() == '' || $("#nation").val() == '') {
+                            $("#info").text("提示：请填入完整读者信息！");
+                            return;
                         }
+                        $("#info").text("");
+                        $.ajax({
+                            type: "POST",
+                            url: "/readerCheck",
+                            data: {
+                                readerId: readerId
+                            },
+                            dataType: "json",
+                            success: function (data) {
+                                if (data.success) {
+                                    $("#readeredit").submit();
+                                } else {
+                                    $("#info").text(data.msg);
+                                }
+                            }
+                        });
                     })
                 </script>
             </form>

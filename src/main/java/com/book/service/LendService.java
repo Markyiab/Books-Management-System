@@ -5,18 +5,13 @@ import com.book.domain.Lend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class LendService {
 
-    private LendDao lendDao;
-
     @Autowired
-    public void setLendDao(LendDao lendDao) {
-        this.lendDao = lendDao;
-    }
+    private LendDao lendDao;
 
     public boolean bookReturn(long bookId) {
         return lendDao.bookReturnOne(bookId) > 0 && lendDao.bookReturnTwo(bookId) > 0;
@@ -32,6 +27,14 @@ public class LendService {
 
     public List<Lend> myLendList(int readerId) {
         return lendDao.myLendList(readerId);
+    }
+
+    public boolean bookLose(final long bookId) {
+        return lendDao.bookLose(bookId) > 0;
+    }
+
+    public int lendReaderOut(final long bookId) {
+        return lendDao.lendReaderOut(bookId);
     }
 
 }

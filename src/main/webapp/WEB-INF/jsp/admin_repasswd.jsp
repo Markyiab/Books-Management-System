@@ -61,7 +61,7 @@
         </div>
     </div>
 </nav>
-<div style="position: relative;top: 15%">
+<div style="position: relative;">
     <c:if test="${!empty succ}">
         <div class="alert alert-success alert-dismissable">
             <button type="button" class="close" data-dismiss="alert"

@@ -67,25 +67,43 @@
             <h3 class="panel-title">借阅《 ${book.name}》</h3>
         </div>
         <div class="panel-body">
-            <form action="lendbookdo.html?id=${book.bookId}" method="post" id="lendbook">
+            <form action="lendbookdo.html?bookId=${book.bookId}" method="post" id="lendbook">
                 <div class="input-group">
                     <span class="input-group-addon">书名</span>
                     <input type="text" readonly="readonly" class="form-control" name="name" id="name" value="${book.name}">
                 </div>
                 <br/>
                 <div class="input-group">
-                    <span class="input-group-addon">读者证号</span>
-                    <input type="text" class="form-control" name="readerId" id="readerId" placeholder="借阅人读者证号">
+                    <span class="input-group-addon">借书证号</span>
+                    <input type="text" class="form-control" name="readerId" id="readerId" placeholder="借阅人借书证号">
                 </div>
                 <br/>
-                <input type="submit" value="确定" class="btn btn-success btn-sm" class="text-left">
+                <p style="text-align: right;color: red;position: absolute" id="info"></p><br/>
+                <input type="button" value="确定" id="lendbookBtn" class="btn btn-success text-left">
                 <script>
 
-                    $("#lendbook").submit(function () {
-                        if ($("#name").val() == '' || $("#readerId").val() == '') {
-                            alert("请填入完整图书信息！");
-                            return false;
+                    $("#lendbookBtn").click(function () {
+                        var readerId = $("#readerId").val();
+                        if (!readerId) {
+                            $("#info").text("提示:必须填写借书证号！");
+                            return;
                         }
+                        $("#info").text("");
+                        $.ajax({
+                            type: "POST",
+                            url: "/lendCheck",
+                            data: {
+                                readerId: readerId
+                            },
+                            dataType: "json",
+                            success: function (data) {
+                                if (data.success){
+                                    $("#lendbook").submit();
+                                }else {
+                                    $("#info").text(data.msg);
+                                }
+                            }
+                        });
                     })
                 </script>
             </form>

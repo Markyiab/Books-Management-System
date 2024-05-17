@@ -65,11 +65,21 @@
         </div>
     </div>
 </nav>
-<div style="position: relative;top: 15%">
+<div style="padding: 70px 550px 10px">
+    <form method="post" action="queryreaders.html" class="form-inline" id="searchform">
+        <div class="input-group">
+            <input type="text" placeholder="输入借书证号" class="my-input" name="readerId" value="${readerId}">
+            <input type="text" placeholder="请输入读者姓名" class="my-input" name="name" value="${name}">
+            <span class="input-group-btn">
+                <input type="submit" value="搜索" class="btn btn-default">
+            </span>
+        </div>
+    </form>
+</div>
+<div style="position: relative;">
     <c:if test="${!empty succ}">
         <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert"
-                    aria-hidden="true">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                 &times;
             </button>
                 ${succ}
@@ -77,8 +87,7 @@
     </c:if>
     <c:if test="${!empty error}">
         <div class="alert alert-danger alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert"
-                    aria-hidden="true">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                 &times;
             </button>
                 ${error}
@@ -103,6 +112,7 @@
                 <th>生日</th>
                 <th>地址</th>
                 <th>电话</th>
+                <th>民族</th>
                 <th>编辑</th>
                 <th>删除</th>
             </tr>
@@ -116,6 +126,7 @@
                     <td><c:out value="${reader.birth}"/></td>
                     <td><c:out value="${reader.address}"/></td>
                     <td><c:out value="${reader.telcode}"/></td>
+                    <td><c:out value="${reader.nation}"/></td>
                     <td>
                         <a href="reader_edit.html?readerId=<c:out value="${reader.readerId}"/>">
                             <button type="button" class="btn btn-info btn-xs">编辑</button>

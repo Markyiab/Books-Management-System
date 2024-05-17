@@ -32,6 +32,11 @@
                         我的借还
                     </a>
                 </li>
+                <li>
+                    <a href="reader_repasswd.html">
+                        密码修改
+                    </a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="reader_info.html"><span class="glyphicon glyphicon-user"></span>&nbsp;${readercard.name}，已登录</a></li>
@@ -42,8 +47,7 @@
 </nav>
 <c:if test="${!empty succ}">
     <div class="alert alert-success alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert"
-                aria-hidden="true">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
             &times;
         </button>
             ${succ}
@@ -51,8 +55,7 @@
 </c:if>
 <c:if test="${!empty error}">
     <div class="alert alert-danger alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert"
-                aria-hidden="true">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
             &times;
         </button>
             ${error}
@@ -68,7 +71,7 @@
         <div class="panel-body">
             <table class="table table-hover">
                 <tr>
-                    <th width="20%">读者证号</th>
+                    <th width="20%">借书证号</th>
                     <td>${readerinfo.readerId}</td>
                 </tr>
                 <tr>
@@ -98,7 +101,7 @@
                 </tbody>
             </table>
         </div>
-        <a class="btn btn-success btn-sm" href="reader_info_edit.html" role="button">修改</a>
+        <a class="btn btn-success" href="reader_info_edit.html" role="button">修改</a>
     </div>
 </div>
 

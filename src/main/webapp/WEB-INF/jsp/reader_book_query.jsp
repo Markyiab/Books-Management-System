@@ -33,6 +33,11 @@
                         我的借还
                     </a>
                 </li>
+                <li>
+                    <a href="reader_repasswd.html">
+                        密码修改
+                    </a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="reader_info.html"><span class="glyphicon glyphicon-user"></span>&nbsp;${readercard.name}，已登录</a></li>
@@ -44,7 +49,7 @@
 
 
 <div class="query-table">
-    <form method="post" action="reader_querybook_do.html" class="form-inline" id="searchform">
+    <form method="post" action="reader_querybook.html" class="form-inline" id="searchform">
         <div class="input-group">
             <input type="text" placeholder="输入书名" class="my-input" name="name" value="${queryBook.name}">
             <input type="text" placeholder="请输入作者" class="my-input" name="author" value="${queryBook.author}">
@@ -81,7 +86,7 @@
                     >${order.value}
                     </option>
                 </c:forEach>
-            </select>${queryBook.order}
+            </select>
             <input type="radio" name="order" value="desc" <c:if test="${queryBook.order ne 'asc'}">checked</c:if>>降序</input>
             <input type="radio" name="order" value="asc" <c:if test="${queryBook.order eq 'asc'}">checked</c:if>>升序</input>
             <span class="input-group-btn">
@@ -90,11 +95,10 @@
         </div>
     </form>
 </div>
-<div style="position: relative;top: 10%">
+<div style="position: relative;">
     <c:if test="${!empty succ}">
         <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert"
-                    aria-hidden="true">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                 &times;
             </button>
                 ${succ}
@@ -102,8 +106,7 @@
     </c:if>
     <c:if test="${!empty error}">
         <div class="alert alert-danger alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert"
-                    aria-hidden="true">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                 &times;
             </button>
                 ${error}
@@ -125,8 +128,10 @@
                     <th>作者</th>
                     <th>出版社</th>
                     <th>ISBN</th>
+                    <th>语言</th>
                     <th>价格</th>
                     <th>状态</th>
+                    <th>借还</th>
                     <th>详情</th>
                 </tr>
                 </thead>
@@ -137,15 +142,39 @@
                         <td><c:out value="${book.author}"/></td>
                         <td><c:out value="${book.publish}"/></td>
                         <td><c:out value="${book.isbn}"/></td>
+                        <td><c:out value="${book.language}"/></td>
                         <td><c:out value="${book.price}"/></td>
-                        <c:if test="${book.state eq 1}">
-                            <td>在馆</td>
-                        </c:if>
-                        <c:if test="${book.state eq 0}">
-                            <td>借出</td>
-                        </c:if>
                         <td>
-                            <a href="readerbookdetail.html?bookId=<c:out value="${book.bookId}"/>">
+                            <c:choose>
+                                <c:when test="${book.state eq 1}">在馆</c:when>
+                                <c:when test="${book.state eq 0}">借出</c:when>
+                                <c:when test="${book.state eq 2}">遗失</c:when>
+                            </c:choose>
+                        </td>
+                        <td>
+                            <c:choose>
+                                <c:when test="${book.state eq 1}">
+                                    <a href="readerlendbook.html?bookId=${book.bookId}">
+                                        <button type="button" class="btn btn-primary btn-xs">借阅</button>
+                                    </a>
+                                </c:when>
+                                <c:when test="${book.state eq 0 and book.selfLend}">
+                                    <a href="readerreturnbook.html?bookId=${book.bookId}">
+                                        <button type="button" class="btn btn-primary btn-xs">归还</button>
+                                    </a>
+                                    <a href="readerlosebook.html?bookId=${book.bookId}">
+                                        <button type="button" class="btn btn-primary btn-xs">遗失</button>
+                                    </a>
+                                </c:when>
+                                <c:when test="${book.state eq 2 and book.selfLend}">
+                                    <a href="readerreturnbook.html?bookId=${book.bookId}">
+                                        <button type="button" class="btn btn-primary btn-xs">归还</button>
+                                    </a>
+                                </c:when>
+                            </c:choose>
+                        </td>
+                        <td>
+                            <a href="readerbookdetail.html?bookId=${book.bookId}">
                                 <button type="button" class="btn btn-success btn-xs">详情</button>
                             </a>
                         </td>

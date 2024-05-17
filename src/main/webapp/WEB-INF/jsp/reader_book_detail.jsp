@@ -37,6 +37,11 @@
                         密码修改
                     </a>
                 </li>
+                <li>
+                    <a href="reader_repasswd.html">
+                        密码修改
+                    </a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="reader_info.html"><span class="glyphicon glyphicon-user"></span>&nbsp;${readercard.name}，已登录</a></li>
@@ -90,10 +95,6 @@
                     <td>${detail.classId}</td>
                 </tr>
                 <tr>
-                    <th>书架号</th>
-                    <td>${detail.pressmark}</td>
-                </tr>
-                <tr>
                     <th>状态</th>
                     <c:if test="${detail.state eq 1}">
                         <td>在馆</td>
@@ -101,7 +102,9 @@
                     <c:if test="${detail.state eq 0}">
                         <td>借出</td>
                     </c:if>
-
+                    <c:if test="${detail.state eq 2}">
+                        <td>遗失</td>
+                    </c:if>
                 </tr>
                 </tbody>
             </table>

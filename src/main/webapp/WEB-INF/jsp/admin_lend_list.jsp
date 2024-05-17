@@ -83,11 +83,10 @@
         })
     </script>
 </div>
-<div style="position: relative;top: 10%">
+<div style="position: relative;">
     <c:if test="${!empty succ}">
         <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert"
-                    aria-hidden="true">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                 &times;
             </button>
                 ${succ}
@@ -95,8 +94,7 @@
     </c:if>
     <c:if test="${!empty error}">
         <div class="alert alert-danger alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert"
-                    aria-hidden="true">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
                 &times;
             </button>
                 ${error}
@@ -115,10 +113,9 @@
             <tr>
                 <th>流水号</th>
                 <th>图书号</th>
-                <th>读者证号</th>
+                <th>借书证号</th>
                 <th>借出日期</th>
                 <th>归还日期</th>
-                <th>删除</th>
             </tr>
             </thead>
             <tbody>
@@ -129,11 +126,6 @@
                     <td><c:out value="${alog.readerId}"/></td>
                     <td><c:out value="${alog.lendDate}"/></td>
                     <td><c:out value="${alog.backDate}"/></td>
-                    <td>
-                        <a href="deletebook.html?bookId=<c:out value="${alog.sernum}"/>">
-                            <button type="button" class="btn btn-danger btn-xs">删除</button>
-                        </a>
-                    </td>
                 </tr>
             </c:forEach>
             </tbody>

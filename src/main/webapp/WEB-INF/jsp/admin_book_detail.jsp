@@ -107,16 +107,15 @@
                     <td>${detail.classId}</td>
                 </tr>
                 <tr>
-                    <th>书架号</th>
-                    <td>${detail.pressmark}</td>
-                </tr>
-                <tr>
                     <th>状态</th>
                     <c:if test="${detail.state eq 1}">
                         <td>在馆</td>
                     </c:if>
                     <c:if test="${detail.state eq 0}">
                         <td>借出</td>
+                    </c:if>
+                    <c:if test="${detail.state eq 2}">
+                        <td>遗失</td>
                     </c:if>
                 </tr>
                 </tbody>

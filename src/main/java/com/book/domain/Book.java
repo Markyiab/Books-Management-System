@@ -34,6 +34,8 @@ public class Book implements Serializable {
 
     private String order;
 
+    private boolean selfLend;
+
     public void setName(String name) {
         this.name = name;
     }
@@ -146,9 +148,17 @@ public class Book implements Serializable {
         this.order = order;
     }
 
+    public boolean isSelfLend() {
+        return selfLend;
+    }
+
+    public void setSelfLend(final boolean selfLend) {
+        this.selfLend = selfLend;
+    }
+
     @Override
     public String toString() {
-        return "这本书的信息为" + pressmark + pubdate + bookId + name + author + publish + isbn + introduction + language + price + classId + state;
+        return "这本书的信息为" + pubdate + bookId + name + author + publish + isbn + introduction + language + price + classId + state;
     }
 
 }

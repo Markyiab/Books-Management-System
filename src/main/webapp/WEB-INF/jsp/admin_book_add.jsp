@@ -99,22 +99,15 @@
             <label for="classId">分类号</label>
             <input type="text" class="form-control" name="classId" id="classId" placeholder="请输入分类号">
         </div>
-        <div class="form-group">
-            <label for="pressmark">书架号</label>
-            <input type="text" class="form-control" name="pressmark" id="pressmark" placeholder="请输入书架号">
-        </div>
-        <div class="form-group">
-            <label for="state">状态</label>
-            <input type="text" class="form-control" name="state" id="state" placeholder="请输入图书状态">
-        </div>
-        <input type="submit" value="添加" class="btn btn-success btn-sm" class="text-left">
+        <input type="hidden" class="form-control" name="state" value="1">
+
+        <input type="submit" value="添加" class="btn btn-success text-left">
         <script>
 
             $("#addbook").submit(function () {
                 if ($("#name").val() == '' || $("#author").val() == '' || $("#publish").val() == ''
                     || $("#isbn").val() == '' || $("#introduction").val() == '' || $("#language").val() == ''
-                    || $("#price").val() == '' || $("#pubdate").val() == '' || $("#classId").val() == ''
-                    || $("#pressmark").val() == '' || $("#state").val() == '') {
+                    || $("#price").val() == '' || $("#pubdate").val() == '' || $("#classId").val() == '') {
                     alert("请填入完整图书信息！");
                     return false;
                 }

@@ -1,11 +1,11 @@
 package com.book.web;
 
 import java.math.BigDecimal;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BookAddCommand {
+
+    private long bookId;
 
     private String name;
     private String author;
@@ -18,6 +18,14 @@ public class BookAddCommand {
     private int classId;
     private int pressmark;
     private int state;
+
+    public long getBookId() {
+        return bookId;
+    }
+
+    public void setBookId(final long bookId) {
+        this.bookId = bookId;
+    }
 
     public void setName(String name) {
         this.name = name;
@@ -39,13 +47,8 @@ public class BookAddCommand {
         this.isbn = isbn;
     }
 
-    public void setPubdate(String pubdate) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        try {
-            this.pubdate = sdf.parse(pubdate);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public void setPubdate(final Date pubdate) {
+        this.pubdate = pubdate;
     }
 
     public void setPublish(String publish) {

@@ -67,7 +67,8 @@
             <h3 class="panel-title">编辑《 ${detail.name}》</h3>
         </div>
         <div class="panel-body">
-            <form action="book_edit_do.html?id=${detail.bookId}" method="post" id="addbook">
+            <form action="book_edit_do.html" method="post" id="addbook">
+                <input type="hidden" name="bookId" value="${detail.bookId}">
                 <div class="input-group">
                     <span class="input-group-addon">书名</span>
                     <input type="text" class="form-control" name="name" id="name" value="${detail.name}">
@@ -104,22 +105,14 @@
                     <span class="input-group-addon">分类号</span>
                     <input type="text" class="form-control" name="classId" id="classId" value="${detail.classId}">
                 </div>
-                <div class="input-group">
-                    <span class="input-group-addon">书架号</span>
-                    <input type="text" class="form-control" name="pressmark" id="pressmark" value="${detail.pressmark}">
-                </div>
-                <div class="input-group">
-                    <span class="input-group-addon">状态</span>
-                    <input type="text" class="form-control" name="state" id="state" value="${detail.state}">
-                </div>
-                <input type="submit" value="确定" class="btn btn-success btn-sm" class="text-left">
+                <input type="hidden" name="state" value="${readerInfo.state}">
+                <input type="submit" value="确定" class="btn btn-success text-left">
                 <script>
 
                     $("#addbook").submit(function () {
                         if ($("#name").val() == '' || $("#author").val() == '' || $("#publish").val() == ''
                             || $("#isbn").val() == '' || $("#introduction").val() == '' || $("#language").val() == ''
-                            || $("#price").val() == '' || $("#pubdate").val() == '' || $("#classId").val() == ''
-                            || $("#pressmark").val() == '' || $("#state").val() == '') {
+                            || $("#price").val() == '' || $("#pubdate").val() == '' || $("#classId").val() == '') {
                             alert("请填入完整图书信息！");
                             return false;
                         }

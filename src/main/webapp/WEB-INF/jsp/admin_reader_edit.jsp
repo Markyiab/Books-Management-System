@@ -67,10 +67,9 @@
             <h3 class="panel-title">编辑读者信息《 ${readerInfo.readerId}》</h3>
         </div>
         <div class="panel-body">
-            <form action="reader_edit_do.html?id=${readerInfo.readerId}" method="post" id="readeredit">
-
+            <form action="reader_edit_do.html" method="post" id="readeredit">
                 <div class="input-group">
-                    <span class="input-group-addon">读者证号</span>
+                    <span class="input-group-addon">借书证号</span>
                     <input readonly="readonly" type="text" class="form-control" name="readerId" id="readerId" value="${readerInfo.readerId}">
                 </div>
                 <div class="input-group">
@@ -93,14 +92,15 @@
                     <span class="input-group-addon">电话</span>
                     <input type="text" class="form-control" name="telcode" id="telcode" value="${readerInfo.telcode}">
                 </div>
-                <input type="submit" value="确定" class="btn btn-success btn-sm" class="text-left">
+                <div class="input-group">
+                    <span class="input-group-addon">民族</span>
+                    <input type="text" class="form-control" name="nation" id="notion" value="${readerInfo.nation}">
+                </div>
+                <input type="submit" value="确定" class="btn btn-success text-left">
                 <script>
-
                     $("#readeredit").submit(function () {
-                        if ($("#name").val() == '' || $("#author").val() == '' || $("#publish").val() == ''
-                            || $("#isbn").val() == '' || $("#introduction").val() == '' || $("#language").val() == ''
-                            || $("#price").val() == '' || $("#pubdate").val() == '' || $("#classId").val() == ''
-                            || $("#pressmark").val() == '' || $("#state").val() == '') {
+                        if ($("#name").val() == '' || $("#sex").val() == '' || $("#birth").val() == '' || $("#address").val() == ''
+                            || $("#telcode").val() == '' || $("#nation").val() == '') {
                             alert("请填入完整读者信息！");
                             return false;
                         }

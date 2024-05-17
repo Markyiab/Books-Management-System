@@ -1,10 +1,10 @@
 package com.book.dao;
 
+import com.book.domain.Lend;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowCallbackHandler;
 import org.springframework.stereotype.Repository;
-import com.book.domain.Lend;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -32,6 +32,9 @@ public class LendDao {
     private static final String LEND_LIST_SQL = "SELECT * FROM lend_list";
 
     private static final String MY_LEND_LIST_SQL = "SELECT * FROM lend_list WHERE reader_id = ? ";
+
+    private static final String BOOK_LOSE_SQL = "UPDATE book_info SET state = 2 WHERE book_id = ?";
+    private static final String FIRST_LEND_READER_SQL = "SELECT reader_id FROM lend_list WHERE book_id=? and back_date is null order by lend_date desc limit 1";
 
     public int bookReturnOne(long bookId) {
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -77,6 +80,13 @@ public class LendDao {
                 list.add(lend);
             }
         };
+    }
+    public int bookLose(long bookId) {
+        return jdbcTemplate.update(BOOK_LOSE_SQL, bookId);
+    }
+
+    public int lendReaderOut(final long bookId) {
+        return jdbcTemplate.queryForObject(FIRST_LEND_READER_SQL, new Object[]{bookId}, Integer.class);
     }
 
 }

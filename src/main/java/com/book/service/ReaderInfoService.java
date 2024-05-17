@@ -5,7 +5,6 @@ import com.book.domain.ReaderInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -30,12 +29,20 @@ public class ReaderInfoService {
         return readerInfoDao.findReaderInfoByReaderId(readerId);
     }
 
+    public boolean readerExist(int readerId) {
+        return readerInfoDao.readerExist(readerId);
+    }
+
     public boolean editReaderInfo(ReaderInfo readerInfo) {
         return readerInfoDao.editReaderInfo(readerInfo) > 0;
     }
 
     public boolean addReaderInfo(ReaderInfo readerInfo) {
         return readerInfoDao.addReaderInfo(readerInfo) > 0;
+    }
+
+    public List<ReaderInfo> queryReader(final int readerId, final String name) {
+        return readerInfoDao.findReader(readerId, name);
     }
 
 }

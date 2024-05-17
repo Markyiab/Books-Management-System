@@ -31,6 +31,11 @@
                         我的借还
                     </a>
                 </li>
+                <li>
+                    <a href="reader_repasswd.html">
+                        密码修改
+                    </a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="reader_info.html"><span class="glyphicon glyphicon-user"></span>&nbsp;${readercard.name}，已登录</a></li>
@@ -39,6 +44,7 @@
         </div>
     </div>
 </nav>
+
 <div class="col-xs-5 col-md-offset-3">
     <div class="panel panel-default">
         <div class="panel-heading">
@@ -50,7 +56,7 @@
             <form action="reader_edit_do_r.html" method="post" id="edit">
 
                 <div class="input-group">
-                    <span class="input-group-addon">读者证号</span>
+                    <span class="input-group-addon">借书证号</span>
                     <input type="text" readonly="readonly" class="form-control" name="readerId" id="readerId" value="${readerinfo.readerId}">
                 </div>
                 <div class="input-group">
@@ -78,7 +84,7 @@
                     <input type="text" class="form-control" name="nation" id="nation" value="${readerinfo.nation}">
                 </div>
                 <br/>
-                <input type="submit" value="确定" class="btn btn-success btn-sm" class="text-left">
+                <input type="submit" value="确定" class="btn btn-success text-left">
                 <script>
 
                     $("#edit").submit(function () {

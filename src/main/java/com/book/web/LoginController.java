@@ -19,12 +19,8 @@ import java.util.HashMap;
 @Controller
 public class LoginController {
 
-    private LoginService loginService;
-
     @Autowired
-    public void setLoginService(LoginService loginService) {
-        this.loginService = loginService;
-    }
+    private LoginService loginService;
 
     //负责处理login.html请求
     @RequestMapping(value = {"/", "/login.html"})

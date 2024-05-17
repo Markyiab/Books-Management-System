@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>编辑读者信息《 ${readerInfo.readerId}》</title>
@@ -45,6 +46,17 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="lendlist.html">借还日志</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        维护管理
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="nation_list.html">民族管理</a></li>
+                        <li class="divider"></li>
+                        <li><a href="class_list.html">分类管理</a></li>
                     </ul>
                 </li>
                 <li>
@@ -94,13 +106,22 @@
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon">民族</span>
-                    <input type="text" class="form-control" name="nation" id="notion" value="${readerInfo.nation}">
+                    <select name="nation" class="edit-select">
+                        <c:forEach items="${nationMap}" var="nat">
+                            <option value="${nat.key}"
+                                    <c:if test="${readerInfo.nation eq nat.key}">
+                                        selected="selected"
+                                    </c:if>
+                            >${nat.value}
+                            </option>
+                        </c:forEach>
+                    </select>
                 </div>
                 <input type="submit" value="确定" class="btn btn-success text-left">
                 <script>
                     $("#readeredit").submit(function () {
                         if ($("#name").val() == '' || $("#sex").val() == '' || $("#birth").val() == '' || $("#address").val() == ''
-                            || $("#telcode").val() == '' || $("#nation").val() == '') {
+                            || $("#telcode").val() == '') {
                             alert("请填入完整读者信息！");
                             return false;
                         }

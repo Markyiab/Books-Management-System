@@ -9,12 +9,13 @@ import java.util.TreeMap;
 
 @Repository
 public class ClassInfoDao {
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private static final String QUERY_ALL_CLASS_SQL = "SELECT * FROM class_info ";
+    private static final String QUERY_ALL_CLASS_SQL = "SELECT class_id,class_name  FROM class_info ";
 
-    public Map<Integer, String> getAllBooks() {
+    public Map<Integer, String> getAllClasses() {
         final Map<Integer, String> map = new TreeMap<>();
         jdbcTemplate.query(QUERY_ALL_CLASS_SQL, resultSet -> {
             resultSet.beforeFirst();

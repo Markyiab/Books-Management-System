@@ -29,12 +29,8 @@ public class LendController {
         this.lendService = lendService;
     }
 
-    private BookService bookService;
-
     @Autowired
-    public void setBookService(BookService bookService) {
-        this.bookService = bookService;
-    }
+    private BookService bookService;
 
     @RequestMapping("/lendbook.html")
     public ModelAndView bookLend(long bookId) {

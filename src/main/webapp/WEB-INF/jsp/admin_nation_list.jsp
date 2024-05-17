@@ -1,7 +1,9 @@
+<%@ page import="com.book.domain.Book" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>借阅《 ${book.name}》</title>
+    <title>借还日志</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="js/jquery-3.2.1.js"></script>
@@ -72,55 +74,30 @@
     </div>
 </nav>
 
-<div class="col-xs-6 col-md-offset-3" style="position: relative;top: 25%">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">借阅《 ${book.name}》</h3>
-        </div>
-        <div class="panel-body">
-            <form action="lendbookdo.html?bookId=${book.bookId}" method="post" id="lendbook">
-                <div class="input-group">
-                    <span class="input-group-addon">书名</span>
-                    <input type="text" readonly="readonly" class="form-control" name="name" id="name" value="${book.name}">
-                </div>
-                <br/>
-                <div class="input-group">
-                    <span class="input-group-addon">借书证号</span>
-                    <input type="text" class="form-control" name="readerId" id="readerId" placeholder="借阅人借书证号">
-                </div>
-                <br/>
-                <p style="text-align: right;color: red;position: absolute" id="info"></p><br/>
-                <input type="button" value="确定" id="lendbookBtn" class="btn btn-success text-left">
-                <script>
-
-                    $("#lendbookBtn").click(function () {
-                        var readerId = $("#readerId").val();
-                        if (!readerId) {
-                            $("#info").text("提示:必须填写借书证号！");
-                            return;
-                        }
-                        $("#info").text("");
-                        $.ajax({
-                            type: "POST",
-                            url: "/lendCheck",
-                            data: {
-                                readerId: readerId
-                            },
-                            dataType: "json",
-                            success: function (data) {
-                                if (data.success){
-                                    $("#lendbook").submit();
-                                }else {
-                                    $("#info").text(data.msg);
-                                }
-                            }
-                        });
-                    })
-                </script>
-            </form>
-        </div>
+<div class="panel panel-default" style="width: 90%;margin-left: 5%">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            民族管理
+        </h3>
     </div>
-
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>编号</th>
+                <th>名称</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${list}" var="nation">
+                <tr>
+                    <td>${nation.key}</td>
+                    <td>${nation.value}</td>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 </body>

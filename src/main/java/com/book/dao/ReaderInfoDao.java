@@ -14,6 +14,7 @@ import java.util.List;
 
 @Repository
 public class ReaderInfoDao {
+
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
@@ -44,7 +45,7 @@ public class ReaderInfoDao {
         reader.setReaderId(resultSet.getInt("reader_id"));
         reader.setSex(resultSet.getString("sex"));
         reader.setTelcode(resultSet.getString("telcode"));
-        reader.setNation(resultSet.getString("nation"));
+        reader.setNation(resultSet.getInt("nation"));
     }
 
     public ReaderInfo findReaderInfoByReaderId(int readerId) {
@@ -66,7 +67,7 @@ public class ReaderInfoDao {
         int readerId = readerInfo.getReaderId();
         String sex = readerInfo.getSex();
         String telcode = readerInfo.getTelcode();
-        String nation = readerInfo.getNation();
+        int nation = readerInfo.getNation();
         return jdbcTemplate.update(UPDATE_READER_INFO, name, sex, birth, address, telcode, nation, readerId);
     }
 
@@ -77,7 +78,7 @@ public class ReaderInfoDao {
         int readerId = readerInfo.getReaderId();
         String sex = readerInfo.getSex();
         String telcode = readerInfo.getTelcode();
-        String nation = readerInfo.getNation();
+        int nation = readerInfo.getNation();
         return jdbcTemplate.update(ADD_READER_INFO_SQL, readerId, name, sex, birth, address, telcode, nation);
     }
 

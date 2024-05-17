@@ -13,6 +13,6 @@ public class ClassInfoService {
     private ClassInfoDao classInfoDao;
 
     public Map<Integer, String> getAllClassInfo(){
-        return classInfoDao.getAllBooks();
+        return classInfoDao.getAllClasses();
     }
 }

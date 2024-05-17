@@ -14,12 +14,8 @@ import java.util.List;
 @Repository
 public class LendDao {
 
-    private JdbcTemplate jdbcTemplate;
-
     @Autowired
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    private JdbcTemplate jdbcTemplate;
 
     private static final String BOOK_RETURN_SQL_ONE = "UPDATE lend_list SET back_date = ? WHERE book_id = ? AND back_date is NULL";
 

@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>添加读者</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/main.css?v=2">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
@@ -45,6 +46,17 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="lendlist.html">借还日志</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        维护管理
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="nation_list.html">民族管理</a></li>
+                        <li class="divider"></li>
+                        <li><a href="class_list.html">分类管理</a></li>
                     </ul>
                 </li>
                 <li>
@@ -94,7 +106,11 @@
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon">民族</span>
-                    <input type="text" class="form-control" name="nation" id="notion">
+                    <select name="nation" class="edit-select">
+                        <c:forEach items="${nationMap}" var="nat">
+                            <option value="${nat.key}">${nat.value}</option>
+                        </c:forEach>
+                    </select>
                 </div>
                 <p style="text-align: right;color: red;position: absolute" id="info"></p><br/>
                 <input type="button" value="添加" id="readaddBtn" class="btn btn-success text-left">
@@ -103,7 +119,7 @@
                     $("#readaddBtn").click(function () {
                         var readerId = $("#readerId").val();
                         if ($("#readerId").val() == '' || $("#name").val() == '' || $("#sex").val() == '' || $("#birth").val() == ''
-                            || $("#address").val() == '' || $("#telcode").val() == '' || $("#nation").val() == '') {
+                            || $("#address").val() == '' || $("#telcode").val() == '') {
                             $("#info").text("提示：请填入完整读者信息！");
                             return;
                         }

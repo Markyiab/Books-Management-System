@@ -10,12 +10,8 @@ import java.util.List;
 @Service
 public class ReaderInfoService {
 
-    private ReaderInfoDao readerInfoDao;
-
     @Autowired
-    public void setReaderInfoDao(ReaderInfoDao readerInfoDao) {
-        this.readerInfoDao = readerInfoDao;
-    }
+    private ReaderInfoDao readerInfoDao;
 
     public List<ReaderInfo> readerInfos() {
         return readerInfoDao.getAllReaderInfo();

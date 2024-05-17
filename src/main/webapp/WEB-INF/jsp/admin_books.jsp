@@ -49,6 +49,22 @@
                         <li><a href="lendlist.html">借还日志</a></li>
                     </ul>
                 </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        维护管理
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="nation_list.html">民族管理</a></li>
+                        <li class="divider"></li>
+                        <li><a href="class_list.html">分类管理</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="admin_repasswd.html">
+                        密码修改
+                    </a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="login.html"><span class="glyphicon glyphicon-user"></span>&nbsp;${admin.adminId}，已登录</a></li>
@@ -62,10 +78,10 @@
 <div style="padding: 70px 550px 10px">
     <form method="post" action="allbooks.html" class="form-inline" id="searchform">
         <div class="input-group">
-            <input type="text" placeholder="输入书名" class="my-input" name="name" value="${queryBook.name}">
-            <input type="text" placeholder="请输入作者" class="my-input" name="author" value="${queryBook.author}">
-            <input type="text" placeholder="请输入出版社" class="my-input" name="publish" value="${queryBook.publish}">
-            <select name="classId" class="my-select">
+            <input type="text" placeholder="输入书名" class="query-input" name="name" value="${queryBook.name}">
+            <input type="text" placeholder="请输入作者" class="query-input" name="author" value="${queryBook.author}">
+            <input type="text" placeholder="请输入出版社" class="query-input" name="publish" value="${queryBook.publish}">
+            <select name="classId" class="query-select">
                 <option value="0">请选择分类</option>
                 <c:forEach items="${classInfos}" var="m">
                     <option value="${m.key}"
@@ -76,7 +92,7 @@
                     </option>
                 </c:forEach>
             </select>
-            <select name="language" class="my-select">
+            <select name="language" class="query-select">
                 <option value="">请选择语言</option>
                 <c:forEach items="${languages}" var="lang">
                     <option value="${lang}"
@@ -87,7 +103,7 @@
                     </option>
                 </c:forEach>
             </select>
-            <select name="orderBy" class="my-select">
+            <select name="orderBy" class="query-select">
                 <option value="">请选择排序方式</option>
                 <c:forEach items="${orderBy}" var="order">
                     <option value="${order.key}"

@@ -7,12 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class AdminDao {
 
-    private JdbcTemplate jdbcTemplate;
-
     @Autowired
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    private JdbcTemplate jdbcTemplate;
 
     private static final String MATCH_ADMIN_SQL = "SELECT COUNT(*) FROM admin where admin_id = ? and password = ? ";
 

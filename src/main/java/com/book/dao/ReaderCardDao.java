@@ -9,18 +9,15 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class ReaderCardDao {
 
+    @Autowired
     private JdbcTemplate jdbcTemplate;
+
     //根据用户查询的SQL语句
     private static final String MATCH_COUNT_SQL = "select count(*) from reader_card where reader_id = ? and passwd = ? ";
     private static final String FIND_READER_BY_USERID = "select reader_id, name, passwd, card_state from reader_card where reader_id = ? ";
     private static final String RE_PASSWORD_SQL = "UPDATE reader_card set passwd = ? where reader_id = ? ";
     private static final String ADD_READERCARD_SQL = "INSERT INTO reader_card (reader_id, name) values (? , ?)";
     private static final String UPDATE_READER_NAME_SQL = "UPDATE reader_card set name = ? where reader_id = ?";
-
-    @Autowired
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
 
     public int getMatchCount(int readerId, String passwd) {
         return jdbcTemplate.queryForObject(MATCH_COUNT_SQL, new Object[]{readerId, passwd}, Integer.class);

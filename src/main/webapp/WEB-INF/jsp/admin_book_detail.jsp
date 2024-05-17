@@ -48,6 +48,17 @@
                         <li><a href="lendlist.html">借还日志</a></li>
                     </ul>
                 </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        维护管理
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="nation_list.html">民族管理</a></li>
+                        <li class="divider"></li>
+                        <li><a href="class_list.html">分类管理</a></li>
+                    </ul>
+                </li>
                 <li>
                     <a href="admin_repasswd.html">
                         密码修改

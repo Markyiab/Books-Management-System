@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>${readercard.name}的主页</title>
@@ -81,7 +82,16 @@
                 </div>
                 <div class="input-group">
                     <span class="input-group-addon">民族</span>
-                    <input type="text" class="form-control" name="nation" id="nation" value="${readerinfo.nation}">
+                    <select name="nation" class="edit-select">
+                        <c:forEach items="${nationMap}" var="nat">
+                            <option value="${nat.key}"
+                                    <c:if test="${readerinfo.nation eq nat.key}">
+                                        selected="selected"
+                                    </c:if>
+                            >${nat.value}
+                            </option>
+                        </c:forEach>
+                    </select>
                 </div>
                 <br/>
                 <input type="submit" value="确定" class="btn btn-success text-left">
@@ -89,7 +99,7 @@
 
                     $("#edit").submit(function () {
                         if ($("#name").val() == '' || $("#sex").val() == '' || $("#birth").val() == '' || $("#address").val() == ''
-                            || $("#telcode").val() == '' || $("#nation").val() == '') {
+                            || $("#telcode").val() == '') {
                             alert("请填入完整个人信息！");
                             return false;
                         }

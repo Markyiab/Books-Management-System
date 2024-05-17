@@ -1,14 +1,18 @@
 body {
     background-color: rgb(240, 242, 245);
 }
-.my-input {
+.query-input {
     margin: 5px 10px;
     padding: 5px 12px;
 }
-.my-select {
+.query-select {
     margin: 5px 10px;
     padding: 5px 12px;
     width: 195px;
+}
+.edit-select {
+    padding: 5px 12px;
+    width: 100%;
 }
 .query-table {
     padding: 10px 550px 10px

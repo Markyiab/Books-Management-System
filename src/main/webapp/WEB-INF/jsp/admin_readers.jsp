@@ -52,6 +52,17 @@
                         <li><a href="lendlist.html">借还日志</a></li>
                     </ul>
                 </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        维护管理
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="nation_list.html">民族管理</a></li>
+                        <li class="divider"></li>
+                        <li><a href="class_list.html">分类管理</a></li>
+                    </ul>
+                </li>
                 <li>
                     <a href="admin_repasswd.html">
                         密码修改
@@ -68,8 +79,8 @@
 <div style="padding: 70px 550px 10px">
     <form method="post" action="queryreaders.html" class="form-inline" id="searchform">
         <div class="input-group">
-            <input type="text" placeholder="输入借书证号" class="my-input" name="readerId" value="${readerId}">
-            <input type="text" placeholder="请输入读者姓名" class="my-input" name="name" value="${name}">
+            <input type="text" placeholder="输入借书证号" class="query-input" name="readerId" value="${readerId}">
+            <input type="text" placeholder="请输入读者姓名" class="query-input" name="name" value="${name}">
             <span class="input-group-btn">
                 <input type="submit" value="搜索" class="btn btn-default">
             </span>
@@ -126,7 +137,7 @@
                     <td><c:out value="${reader.birth}"/></td>
                     <td><c:out value="${reader.address}"/></td>
                     <td><c:out value="${reader.telcode}"/></td>
-                    <td><c:out value="${reader.nation}"/></td>
+                    <td><c:out value="${nationMap[reader.nation]}"/></td>
                     <td>
                         <a href="reader_edit.html?readerId=<c:out value="${reader.readerId}"/>">
                             <button type="button" class="btn btn-info btn-xs">编辑</button>

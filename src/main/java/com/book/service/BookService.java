@@ -10,12 +10,8 @@ import java.util.List;
 @Service
 public class BookService {
 
-    private BookDao bookDao;
-
     @Autowired
-    public void setBookDao(BookDao bookDao) {
-        this.bookDao = bookDao;
-    }
+    private BookDao bookDao;
 
     public List<Book> queryBook(String searchWord) {
         return bookDao.queryBook(searchWord);

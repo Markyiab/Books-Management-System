@@ -96,7 +96,7 @@
                 </tr>
                 <tr>
                     <th>民族</th>
-                    <td>${readerinfo.nation}</td>
+                    <td>${nationMap[readerinfo.nation]}</td>
                 </tr>
                 </tbody>
             </table>

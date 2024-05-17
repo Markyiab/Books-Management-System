@@ -11,24 +11,14 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginService {
 
+    @Autowired
     private ReaderCardDao readerCardDao;
+
+    @Autowired
     private ReaderInfoDao readerInfoDao;
+
+    @Autowired
     private AdminDao adminDao;
-
-    @Autowired
-    public void setReaderCardDao(ReaderCardDao readerCardDao) {
-        this.readerCardDao = readerCardDao;
-    }
-
-    @Autowired
-    public void setReaderInfoDao(ReaderInfoDao readerInfoDao) {
-        this.readerInfoDao = readerInfoDao;
-    }
-
-    @Autowired
-    public void setAdminDao(AdminDao adminDao) {
-        this.adminDao = adminDao;
-    }
 
     public boolean hasMatchReader(int readerId, String passwd) {
         return readerCardDao.getMatchCount(readerId, passwd) > 0;

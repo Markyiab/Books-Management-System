@@ -3,6 +3,7 @@ package com.book.web;
 import com.book.domain.ReaderCard;
 import com.book.domain.ReaderInfo;
 import com.book.service.LoginService;
+import com.book.service.NationInfoService;
 import com.book.service.ReaderCardService;
 import com.book.service.ReaderInfoService;
 import org.apache.commons.lang3.math.NumberUtils;
@@ -31,31 +32,23 @@ public class ReaderController {
         binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
     }
 
+    @Autowired
     private ReaderInfoService readerInfoService;
 
     @Autowired
-    public void setReaderInfoService(ReaderInfoService readerInfoService) {
-        this.readerInfoService = readerInfoService;
-    }
-
     private LoginService loginService;
 
     @Autowired
-    public void setLoginService(LoginService loginService) {
-        this.loginService = loginService;
-    }
-
     private ReaderCardService readerCardService;
 
     @Autowired
-    public void setReaderCardService(ReaderCardService readerCardService) {
-        this.readerCardService = readerCardService;
-    }
+    private NationInfoService nationInfoService;
 
     @RequestMapping("allreaders.html")
     public ModelAndView allBooks() {
         ModelAndView modelAndView = new ModelAndView("admin_readers");
         modelAndView.addObject("readers", readerInfoService.readerInfos());
+        modelAndView.addObject("nationMap", nationInfoService.getAllNationInfo());
         return modelAndView;
     }
 
@@ -76,6 +69,7 @@ public class ReaderController {
         ReaderInfo readerInfo = readerInfoService.getReaderInfo(readerCard.getReaderId());
         ModelAndView modelAndView = new ModelAndView("reader_info");
         modelAndView.addObject("readerinfo", readerInfo);
+        initNationMapToSession(session);
         return modelAndView;
     }
 
@@ -84,6 +78,7 @@ public class ReaderController {
         ReaderInfo readerInfo = readerInfoService.getReaderInfo(readerId);
         ModelAndView modelAndView = new ModelAndView("admin_reader_edit");
         modelAndView.addObject("readerInfo", readerInfo);
+        modelAndView.addObject("nationMap", nationInfoService.getAllNationInfo());
         return modelAndView;
     }
 
@@ -101,7 +96,9 @@ public class ReaderController {
 
     @RequestMapping("reader_add.html")
     public ModelAndView readerInfoAdd() {
-        return new ModelAndView("admin_reader_add");
+        final ModelAndView modelAndView = new ModelAndView("admin_reader_add");
+        modelAndView.addObject("nationMap", nationInfoService.getAllNationInfo());
+        return modelAndView;
     }
 
     //用户功能--进入修改密码页面
@@ -166,6 +163,7 @@ public class ReaderController {
         ReaderInfo readerInfo = readerInfoService.getReaderInfo(readerCard.getReaderId());
         ModelAndView modelAndView = new ModelAndView("reader_info_edit");
         modelAndView.addObject("readerinfo", readerInfo);
+        //modelAndView.addObject("nationMap", nationInfoService.getAllNationInfo());
         return modelAndView;
     }
     @RequestMapping("reader_edit_do_r.html")
@@ -189,6 +187,7 @@ public class ReaderController {
         modelAndView.addObject("readers", readerInfoService.queryReader(NumberUtils.toInt(readerId), name));
         modelAndView.addObject("readerId", readerId);
         modelAndView.addObject("name", name);
+        modelAndView.addObject("nationMap", nationInfoService.getAllNationInfo());
 
         modelAndView.setViewName("admin_readers");
         return modelAndView;
@@ -198,4 +197,10 @@ public class ReaderController {
         return readerCard.getName().equals(name) || readerCardService.updateName(readerCard.getReaderId(), name);
     }
 
+    private void initNationMapToSession(HttpSession session){
+        final Map<Integer, String> nationMap = (Map<Integer, String>) session.getAttribute("nationMap");
+        if(null == nationMap) {
+            session.setAttribute("nationMap", nationInfoService.getAllNationInfo());
+        }
+    }
 }

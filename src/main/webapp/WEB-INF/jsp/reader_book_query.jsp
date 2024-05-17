@@ -51,10 +51,10 @@
 <div class="query-table">
     <form method="post" action="reader_querybook.html" class="form-inline" id="searchform">
         <div class="input-group">
-            <input type="text" placeholder="输入书名" class="my-input" name="name" value="${queryBook.name}">
-            <input type="text" placeholder="请输入作者" class="my-input" name="author" value="${queryBook.author}">
-            <input type="text" placeholder="请输入出版社" class="my-input" name="publish" value="${queryBook.publish}">
-            <select name="classId" class="my-select">
+            <input type="text" placeholder="输入书名" class="query-input" name="name" value="${queryBook.name}">
+            <input type="text" placeholder="请输入作者" class="query-input" name="author" value="${queryBook.author}">
+            <input type="text" placeholder="请输入出版社" class="query-input" name="publish" value="${queryBook.publish}">
+            <select name="classId" class="query-select">
                 <option value="0">请选择分类</option>
                 <c:forEach items="${classInfos}" var="m">
                     <option value="${m.key}"
@@ -65,7 +65,7 @@
                     </option>
                 </c:forEach>
             </select>
-            <select name="language" class="my-select">
+            <select name="language" class="query-select">
                 <option value="">请选择语言</option>
                 <c:forEach items="${languages}" var="lang">
                     <option value="${lang}"
@@ -76,7 +76,7 @@
                     </option>
                 </c:forEach>
             </select>
-            <select name="orderBy" class="my-select">
+            <select name="orderBy" class="query-select">
                 <option value="">请选择排序方式</option>
                 <c:forEach items="${orderBy}" var="order">
                     <option value="${order.key}"
